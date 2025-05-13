@@ -274,33 +274,7 @@
             </div>
 
             <!-- Statistik Pendidikan -->
-            <div class="row mt-5">
-                <div class="col-12">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h3 class="text-center mb-5">Pencapaian Kami</h3>
-                            <div class="row text-center">
-                                <div class="col-md-3 mb-4 mb-md-0">
-                                    <div class="display-4 fw-bold text-primary">15+</div>
-                                    <p class="mb-0">Lembaga Pendidikan</p>
-                                </div>
-                                <div class="col-md-3 mb-4 mb-md-0">
-                                    <div class="display-4 fw-bold text-primary">2,500+</div>
-                                    <p class="mb-0">Santri & Mahasiswa</p>
-                                </div>
-                                <div class="col-md-3 mb-4 mb-md-0">
-                                    <div class="display-4 fw-bold text-primary">150+</div>
-                                    <p class="mb-0">Pengajar Berkompeten</p>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="display-4 fw-bold text-primary">25+</div>
-                                    <p class="mb-0">Program Beasiswa</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
 
