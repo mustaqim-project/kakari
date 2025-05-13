@@ -5,7 +5,7 @@
             <a class="navbar-brand" href="/">
                               <figure class="mb-0 mx-auto">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset($settings['site_logo']) }}" class="img-fluid logo" aria-label="Go to ic-syekhburhanuddin" alt="ic-syekhburhanuddin Logo" >
+                        <img src="{{ asset($settings['site_logo']) }}" class="img-fluid logo" aria-label="Go to ic-syekhburhanuddin" alt="ic-syekhburhanuddin Logo" width="100">
                     </a>
                 </figure>
             </a>
