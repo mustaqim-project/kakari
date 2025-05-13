@@ -3,10 +3,14 @@
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
             <a class="navbar-brand" href="/">
-                              <figure class="mb-0 mx-auto">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ asset($settings['site_logo']) }}" class="img-fluid logo" aria-label="Go to ic-syekhburhanuddin" alt="ic-syekhburhanuddin Logo" width="100">
+                <figure class="mb-0 mx-auto">
+                    <a class="navbar-brand" href="/">
+                        <figure class="mb-0 mx-auto">
+                            <img src="{{ asset($settings['site_logo']) }}" class="img-fluid logo"
+                                aria-label="Go to ic-syekhburhanuddin" alt="ic-syekhburhanuddin Logo">
+                        </figure>
                     </a>
+
                 </figure>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
