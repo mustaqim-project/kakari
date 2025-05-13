@@ -3,7 +3,7 @@
 
 <!-- End Setting metas -->
 @section('content')
-<!-- Setting metas -->
+    <!-- Setting metas -->
 @section('title', $news->title)
 @section('meta_keyword', $news->meta_keyword)
 @section('meta_description', $news->meta_description)
@@ -15,7 +15,7 @@
 @section('meta_tw_image', asset($news->image))
 <!-- End Setting metas -->
 @php
-$title = htmlspecialchars(trim($news->title), ENT_QUOTES, 'UTF-8');
+    $title = htmlspecialchars(trim($news->title), ENT_QUOTES, 'UTF-8');
 @endphp
 
 <section class="pb-80">
@@ -47,10 +47,10 @@ $title = htmlspecialchars(trim($news->title), ENT_QUOTES, 'UTF-8');
                     </div>
                     <div class="card-body">
                         <!-- Video Player -->
-                        <div class="ratio ratio-16x9 mb-4">
-                            <iframe src="{{ asset($news->image) }}" title="Pengantar Tafsir Surah Yasin"
-                                allowfullscreen></iframe>
-                        </div>
+                        <figure class="article-image">
+                            <img src="{{ asset($news->image) }}" alt="{{ $title }}" class="img-fluid">
+                            <figcaption class="image-caption">{{ $news->image_caption ?? $title }}</figcaption>
+                        </figure>
 
                         <!-- Materi Content -->
                         <div class="mb-4">
@@ -62,15 +62,15 @@ $title = htmlspecialchars(trim($news->title), ENT_QUOTES, 'UTF-8');
                         <!-- Navigation Between Materi -->
                         <div class="d-flex justify-content-between mt-4">
                             @if ($previousPost)
-                            <a href="{{ route('news-details', $previousPost->slug) }}" class="btn btn-primary">
-                                <i class="fas fa-arrow-left me-2"></i>{!! truncate($previousPost->title) !!}
-                            </a>
+                                <a href="{{ route('news-details', $previousPost->slug) }}" class="btn btn-primary">
+                                    <i class="fas fa-arrow-left me-2"></i>{!! truncate($previousPost->title) !!}
+                                </a>
                             @endif
 
                             @if ($nextPost)
-                            <a href="{{ route('news-details', $nextPost->slug) }}" class="btn btn-primary">
-                                {!! truncate($nextPost->title) !!}<i class="fas fa-arrow-right ms-2"></i>
-                            </a>
+                                <a href="{{ route('news-details', $nextPost->slug) }}" class="btn btn-primary">
+                                    {!! truncate($nextPost->title) !!}<i class="fas fa-arrow-right ms-2"></i>
+                                </a>
                             @endif
 
 
@@ -120,8 +120,7 @@ $title = htmlspecialchars(trim($news->title), ENT_QUOTES, 'UTF-8');
                                                 <img src="https://via.placeholder.com/40" class="rounded-circle me-2"
                                                     alt="Ustadz">
                                                 <div>
-                                                    <div
-                                                        class="d-flex justify-content-between align-items-center mb-1">
+                                                    <div class="d-flex justify-content-between align-items-center mb-1">
                                                         <h6 class="mb-0">Ust. Ahmad Al-Fathoni</h6>
                                                         <small class="text-muted">1 hari lalu</small>
                                                     </div>
@@ -249,16 +248,16 @@ $title = htmlspecialchars(trim($news->title), ENT_QUOTES, 'UTF-8');
             let id = $(this).data('id');
             Swal.fire({
                 title: '{{ __('
-                frontend.Are you sure ? ') }}',
-                text : "{{ __("
-                frontend.You won '\t be able to revert this!") }}",
+                                frontend.Are you sure ? ') }}',
+                text: "{{ __("
+                                frontend.You won '\t be able to revert this!") }}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: '{{ __('
-                frontend.Yes,
-                delete it!') }}'
+                                frontend.Yes,
+                                delete it!') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
 
