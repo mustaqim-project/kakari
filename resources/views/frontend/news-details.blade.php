@@ -532,28 +532,7 @@
                     </aside>
 
                     <!-- social media -->
-                    <aside class="wrapper__list__article">
-                        <h4 class="border_section">{{ __('frontend.stay conected') }}</h4>
-                        <!-- widget Social media -->
-                        <div class="wrap__social__media">
-                            @foreach ($socialCounts as $socialCount)
-                            <a href="{{ $socialCount->url }}" target="_blank">
-                                <div class="social__media__widget mt-2" style="background-color:{{ $socialCount->color }}">
-                                    <span class="social__media__widget-icon">
-                                        <i class="{{ $socialCount->icon }}"></i>
-                                    </span>
-                                    <span class="social__media__widget-counter">
-                                        {{ $socialCount->fan_count }} {{ $socialCount->fan_type }}
-                                    </span>
-                                    <span class="social__media__widget-name">
-                                        {{ $socialCount->button_text }}
-                                    </span>
-                                </div>
-                            </a>
-                            @endforeach
 
-                        </div>
-                    </aside>
                     <!-- End social media -->
 
                     <aside class="wrapper__list__article">
