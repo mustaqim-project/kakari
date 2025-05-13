@@ -1,173 +1,70 @@
-<section class="wrapper__section p-0">
-    {{-- <style>
-        /* General List Styling */
-        .option-content {
-            list-style-type: none;
-            padding: 0;
-        }
+<!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
 
-        .option-content li {
-            margin-bottom: 10px; /* Adjust spacing between list items */
-        }
-
-        /* Link Styling */
-        .option-content a {
-            text-decoration: none;
-            color: #000; /* Default link color */
-            font-size: 15px; /* Text font size */
-            display: block; /* Ensure link occupies the full width */
-            padding: 10px;
-        }
-
-        .option-content a:hover {
-            color: #007bff; /* Hover color for links */
-        }
-
-        /* Download Link Specific Styling */
-        .download-link {
-            background-color: white; /* Button background color white */
-            color: #0052a3; /* Text color */
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-            width: 100px;
-            margin-bottom: 5px; /* Margin for spacing */
-            padding: 7px; /* Padding inside the button */
-            font-size: 15px; /* Font size for text */
-            display: flex; /* Center icon and text vertically */
-            align-items: center;
-            justify-content: center;
-        }
-
-        .download-link:hover {
-            background-color: #f1f1f1; /* Slightly lighter background on hover */
-        }
-
-        .download-icon {
-            font-size: 24px; /* Icon font size */
-            color: #0052a3; /* Icon color */
-            margin-right: 5px; /* Space between icon and text */
-        }
-
-        /* Social Button Icon Styling */
-        .btn-social > i {
-            color: var(--colorPrimary) !important; /* Set the icon color */
-        }
-
-        /* Additional Responsive Design */
-        @media (max-width: 768px) {
-            .option-content a {
-                font-size: 14px; /* Slightly smaller text size for mobile */
-            }
-
-            .download-link {
-                width: 100%; /* Full width on smaller screens */
-            }
-        }
-    </style> --}}
-
-    <div class="wrapper__section__components">
-        <!-- Footer -->
-        <footer>
-            <div class="wrapper__footer bg__footer-dark pb-0">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="widget__footer">
-                                <figure class="image-logo">
-                                    <img src="{{ asset(@$footerInfo->logo) }}" alt="ic-syekhburhanuddin Logo" class="img-fluid loaded" loading="lazy">
-                                </figure>
-
-                                <p>{{ @$footerInfo->description }}</p>
-
-                                <div class="social__media mt-4">
-                                    <ul class="list-inline">
-                                        @foreach ($socialLinks as $link)
-                                            <li class="list-inline-item">
-                                                <a href="{{ $link->url }}" class="btn btn-social rounded text-white" aria-label="Go to ic-syekhburhanuddin Media Social" alt="ic-syekhburhanuddin Media Social">
-                                                    <i class="{{ $link->icon }}"></i>
-                                                </a>
-                                            </li>
-                                        @endforeach
-
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="widget__footer">
-                                <div class="dropdown-footer">
-                                    <h4 class="footer-title">
-                                        {{ @$footerGridOneTitle->value }}
-                                        <span class="fa fa-angle-down"></span>
-                                    </h4>
-                                </div>
-
-                                <ul class="list-unstyled option-content is-hidden">
-                                    @foreach ($footerGridOne as $gridOne)
-                                        <li>
-                                            <a href="{{ $gridOne->url }}">{{ $gridOne->name }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="widget__footer">
-                                <div class="dropdown-footer">
-                                    <h4 class="footer-title">
-                                        {{ @$footerGridTwoTitle->value }}
-                                        <span class="fa fa-angle-down"></span>
-                                    </h4>
-                                </div>
-                                <ul class="list-unstyled option-content is-hidden">
-                                    @foreach ($footerGridTwo as $gridTwo)
-                                        <li>
-                                            <a href="{{ $gridTwo->url }}">{{ $gridTwo->name }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="widget__footer">
-                                <div class="dropdown-footer">
-                                    <h4 class="footer-title">
-                                        {{ @$footerGridThreeTitle->value }}
-                                        <span class="fa fa-angle-down"></span>
-                                    </h4>
-                                </div>
-                                <ul class="list-unstyled option-content is-hidden">
-                                    @foreach ($footerGridThree as $gridThree)
-                                        <li>
-                                            <a href="{{ $gridThree->url }}">{{ $gridThree->name }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
+                {{-- Kolom 1: Deskripsi dan Sosial Media --}}
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <figure class="image-logo">
+                        <img src="{{ asset(@$footerInfo->logo) }}" alt="ic-syekhburhanuddin Logo"
+                            class="img-fluid loaded" loading="lazy">
+                    </figure>
+                    <p>{{ @$footerInfo->description ?? 'Menebar rahmat melalui dakwah yang santun dan ilmu yang bermanfaat.' }}
+                    </p>
+                    <div class="mt-3">
+                        @foreach ($socialLinks as $link)
+                            <a href="{{ $link->url }}" class="social-icon" aria-label="{{ $link->name }}">
+                                <i class="{{ $link->icon }}"></i>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
-            </div>
 
-            <!-- Footer bottom -->
-            <div class="wrapper__footer-bottom bg__footer-dark">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="border-top-1 bg__footer-bottom-section">
-                                <p class="text-white text-center">
-                                    {{ @$footerInfo->copyright }}
-                                </p>
-                            </div>
-                        </div>
+                {{-- Kolom 2: Navigasi --}}
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>{{ @$footerGridOneTitle->value ?? 'Navigasi' }}</h5>
+                    <div class="footer-links">
+                        @foreach ($footerGridOne as $item)
+                            <a href="{{ $item->url }}">{{ $item->name }}</a>
+                        @endforeach
                     </div>
                 </div>
+
+                {{-- Kolom 3: Layanan --}}
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>{{ @$footerGridTwoTitle->value ?? 'Layanan' }}</h5>
+                    <div class="footer-links">
+                        @foreach ($footerGridTwo as $item)
+                            <a href="{{ $item->url }}">{{ $item->name }}</a>
+                        @endforeach
+                    </div>
+                </div>
+
+                {{-- Kolom 4: Kontak --}}
+                <div class="col-lg-3 col-md-6">
+                    <h5>Kontak Kami</h5>
+                    <p>
+                        <i class="fas fa-map-marker-alt me-2"></i> {{ @$contact->address }}
+                        <br>
+                        <i class="fas fa-phone-alt me-2 mt-2"></i> <a
+                            href="tel:{{ @$contact->phone }}">{{ @$contact->phone }}</a>
+                        <br>
+                        <i class="fas fa-envelope me-2 mt-2"></i>
+                        <a href="mailto:{{ @$contact->email }}">{{ @$contact->email }}</a>
+
+                    </p>
+
+
+                </div>
+
+
             </div>
-        </footer>
-    </div>
-</section>
+
+            <hr class="mt-4" style="border-color: var(--border);">
+            <div class="text-center pt-3">
+                <p class="mb-0">
+                    {{ @$footerInfo->copyright ?? '© ' . now()->year . ' Cahaya Warisan Syekh Burhanuddin. All rights reserved.' }}
+                </p>
+            </div>
+        </div>
+    </footer>

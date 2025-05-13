@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
 use App\Models\About;
-use App\Models\kebijakan;
 use App\Models\Ad;
 use App\Models\Category;
 use App\Models\Comment;
@@ -13,421 +12,428 @@ use App\Models\Contact;
 use App\Models\HomeSectionSetting;
 use App\Models\News;
 use App\Models\RecivedMail;
-use App\Models\SocialCount;
 use App\Models\SocialLink;
 use App\Models\Subscriber;
 use App\Models\Tag;
+use App\Models\CatDownload;
+use App\Models\Download;
+use App\Models\Donasi;
+use App\Models\Ekoran;
+use App\Models\Pendidikan;
+use App\Models\Penguurus;
+use App\Models\Playlist;
+use App\Models\Video;
+use App\Models\PodcastPlaylist;
+use App\Models\Podcast;
+use App\Models\Streaming;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
-
-public function index()
-{
-    // Cache Breaking News - 10 menit
-    $breakingNews = Cache::remember('breaking_news', 10, function () {
-        return News::where(['is_breaking_news' => 1])
-            ->activeEntries()
-            ->withLocalize()
-            ->orderBy('id', 'DESC')
-            ->take(10)
-            ->get();
-    });
-
-    // Cache Hero Slider - 10 menit
-    $heroSlider = Cache::remember('hero_slider', 10, function () {
-        return News::with(['category', 'auther'])
+    public function index()
+    {
+        $breakingNews = News::where(['is_breaking_news' => 1,])
+            ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(10)->get();
+        $heroSlider = News::with(['category', 'auther'])
             ->where('show_at_slider', 1)
             ->activeEntries()
             ->withLocalize()
-            ->orderBy('id', 'DESC')
-            ->take(7)
+            ->orderBy('id', 'DESC')->take(7)
             ->get();
-    });
 
-    // Cache Recent News - 10 menit
-    $recentNews = Cache::remember('recent_news', 10, function () {
-        return News::with(['category', 'auther'])
-            ->activeEntries()
-            ->withLocalize()
-            ->orderBy('id', 'DESC')
-            ->take(6)
-            ->get();
-    });
+        $recentNews = News::with(['category', 'auther'])->activeEntries()->withLocalize()
+            ->orderBy('id', 'DESC')->take(6)->get();
+        $popularNews = News::with(['category'])->where('show_at_popular', 1)
+            ->activeEntries()->withLocalize()
+            ->orderBy('updated_at', 'DESC')->take(4)->get();
 
-    // Cache Popular News - 10 menit
-    $popularNews = Cache::remember('popular_news', 10, function () {
-        return News::with(['category'])
-            ->where('show_at_popular', 1)
-            ->activeEntries()
-            ->withLocalize()
-            ->orderBy('updated_at', 'DESC')
-            ->take(4)
-            ->get();
-    });
+        $HomeSectionSetting = HomeSectionSetting::where('language', getLangauge())->first();
 
-    // Cache Home Section Settings - 10 menit
-    $HomeSectionSetting = Cache::remember('home_section_setting_' . getLangauge(), 10, function () {
-        return HomeSectionSetting::where('language', getLangauge())->first();
-    });
-
-    if ($HomeSectionSetting) {
-        // Cache Category Sections - 10 menit
-        $categorySectionOne = Cache::remember('category_section_one_' . $HomeSectionSetting->category_section_one, 10, function () use ($HomeSectionSetting) {
-            return News::where('category_id', $HomeSectionSetting->category_section_one)
-                ->activeEntries()
-                ->withLocalize()
+        if ($HomeSectionSetting) {
+            $categorySectionOne = News::where('category_id', $HomeSectionSetting->category_section_one)
+                ->activeEntries()->withLocalize()
                 ->orderBy('id', 'DESC')
                 ->take(8)
                 ->get();
-        });
 
-        $categorySectionTwo = Cache::remember('category_section_two_' . $HomeSectionSetting->category_section_two, 10, function () use ($HomeSectionSetting) {
-            return News::where('category_id', $HomeSectionSetting->category_section_two)
-                ->activeEntries()
-                ->withLocalize()
+            $categorySectionTwo = News::where('category_id', $HomeSectionSetting->category_section_two)
+                ->activeEntries()->withLocalize()
                 ->orderBy('id', 'DESC')
                 ->take(8)
                 ->get();
-        });
 
-        $categorySectionThree = Cache::remember('category_section_three_' . $HomeSectionSetting->category_section_three, 10, function () use ($HomeSectionSetting) {
-            return News::where('category_id', $HomeSectionSetting->category_section_three)
-                ->activeEntries()
-                ->withLocalize()
+            $categorySectionThree = News::where('category_id', $HomeSectionSetting->category_section_three)
+                ->activeEntries()->withLocalize()
                 ->orderBy('id', 'DESC')
                 ->take(6)
                 ->get();
+
+            $categorySectionFour = News::where('category_id', $HomeSectionSetting->category_section_four)
+                ->activeEntries()->withLocalize()
+                ->orderBy('id', 'DESC')
+                ->take(4)
+                ->get();
+        } else {
+            $categorySectionOne = collect();
+            $categorySectionTwo = collect();
+            $categorySectionThree = collect();
+            $categorySectionFour = collect();
+        }
+
+
+        $mostViewedPosts = News::activeEntries()->withLocalize()
+            ->orderBy('views', 'DESC')
+            ->take(3)
+            ->get();
+
+        // Mengambil data dari model baru
+        $featuredPlaylists = Playlist::with('videos')
+            ->where('is_featured', 1)
+            ->where('is_active', 1)
+            ->take(3)
+            ->get();
+
+        $featuredPodcasts = PodcastPlaylist::with('podcasts')
+            ->where('is_featured', 1)
+            ->where('is_active', 1)
+            ->take(3)
+            ->get();
+
+
+        $latestStreaming = Streaming::whereNotNull('code_frame')->latest()->first();
+
+        $downloadCategories = CatDownload::with('downloads')
+            ->take(5)
+            ->get();
+
+        $latestDonasi = Donasi::orderBy('id', 'DESC')
+            ->take(3)
+            ->get();
+
+        $latestEkoran = Ekoran::orderBy('tanggal_terbit', 'DESC')
+            ->take(5)
+            ->get();
+
+        $activePendidikan = Pendidikan::where('is_active', 1)
+            ->orderBy('tanggal_mulai', 'ASC')
+            ->get();
+
+
+        $mostCommonTags = $this->mostCommonTags();
+
+        $ad = Ad::first();
+
+        return view('frontend.home', compact(
+            'breakingNews',
+            'heroSlider',
+            'recentNews',
+            'popularNews',
+            'categorySectionOne',
+            'categorySectionTwo',
+            'categorySectionThree',
+            'categorySectionFour',
+            'mostViewedPosts',
+            'mostCommonTags',
+            'featuredPlaylists',
+            'featuredPodcasts',
+            'latestStreaming',
+            'downloadCategories',
+            'latestDonasi',
+            'latestEkoran',
+            'activePendidikan',
+            'ad'
+        ));
+    }
+
+public function ShowNews(string $slug)
+    {
+        // Cache the news based on slug - 10 minutes
+        $news = Cache::remember('news_' . $slug, 10, function () use ($slug) {
+            return News::with(['auther', 'tags', 'comments'])
+                ->where('slug', $slug)
+                ->activeEntries()
+                ->withLocalize()
+                ->first();
         });
 
-        $categorySectionFour = Cache::remember('category_section_four_' . $HomeSectionSetting->category_section_four, 10, function () use ($HomeSectionSetting) {
-            return News::where('category_id', $HomeSectionSetting->category_section_four)
+        $this->countView($news);
+
+        // Cache recent news - 10 minutes
+        $recentNews = Cache::remember('recent_news_' . $news->slug, 10, function () use ($news) {
+            return News::with(['category', 'auther'])
+                ->where('slug', '!=', $news->slug)
                 ->activeEntries()
                 ->withLocalize()
                 ->orderBy('id', 'DESC')
                 ->take(4)
                 ->get();
         });
-    } else {
-        $categorySectionOne = collect();
-        $categorySectionTwo = collect();
-        $categorySectionThree = collect();
-        $categorySectionFour = collect();
+
+        // Cache common tags - 10 minutes
+        $mostCommonTags = Cache::remember('most_common_tags', 10, function () {
+            return $this->mostCommonTags();
+        });
+
+        // Cache next post - 10 minutes
+        $nextPost = Cache::remember('next_post_' . $news->id, 10, function () use ($news) {
+            return News::where('id', '>', $news->id)
+                ->activeEntries()
+                ->withLocalize()
+                ->orderBy('id', 'asc')
+                ->first();
+        });
+
+        // Cache previous post - 10 minutes
+        $previousPost = Cache::remember('previous_post_' . $news->id, 10, function () use ($news) {
+            return News::where('id', '<', $news->id)
+                ->activeEntries()
+                ->withLocalize()
+                ->orderBy('id', 'desc')
+                ->first();
+        });
+
+        // Cache related posts by category - 10 minutes
+        $relatedPosts = Cache::remember('related_posts_' . $news->category_id . '_slug_' . $news->slug, 10, function () use ($news) {
+            return News::where('slug', '!=', $news->slug)
+                ->where('category_id', $news->category_id)
+                ->activeEntries()
+                ->withLocalize()
+                ->take(5)
+                ->get();
+        });
+
+        // Cache social counts - 10 minutes
+        $socialCounts = Cache::remember('social_counts_' . getLangauge(), 10, function () {
+            return SocialCount::where(['status' => 1, 'language' => getLangauge()])->get();
+        });
+
+        // Cache advertisement - 10 minutes
+        $ad = Cache::remember('ad', 10, function () {
+            return Ad::first();
+        });
+
+        // Cache related news by tag - 10 minutes
+        $relatedNewsByTag = Cache::remember('related_news_by_tag_' . $news->id, 10, function () use ($news) {
+            return News::whereHas('tags', function ($query) use ($news) {
+                $query->whereIn('name', $news->tags->pluck('name'));
+            })
+                ->where('id', '!=', $news->id)
+                ->activeEntries()
+                ->withLocalize()
+                ->take(5)
+                ->get();
+        });
+
+        // Insert internal links if related news by tag exists
+        if ($relatedNewsByTag->isNotEmpty()) {
+            $news = $this->insertInternalLinks($news, $relatedNewsByTag);
+        }
+
+        return view('frontend.news-details', compact(
+            'news',
+            'recentNews',
+            'mostCommonTags',
+            'nextPost',
+            'previousPost',
+            'relatedPosts',
+            'socialCounts',
+            'ad'
+        ));
     }
 
-    // Cache Most Viewed Posts - 10 menit
-    $mostViewedPosts = Cache::remember('most_viewed_posts', 10, function () {
-        return News::activeEntries()
-            ->withLocalize()
-            ->orderBy('views', 'DESC')
+    // Metode untuk menampilkan daftar playlist dan video
+    public function playlists()
+    {
+        $playlists = Playlist::where('is_active', 1)
+            ->orderBy('id', 'DESC')
+            ->paginate(9);
+
+        $featuredPlaylists = Playlist::where('is_featured', 1)
+            ->where('is_active', 1)
             ->take(3)
             ->get();
-    });
 
-    // Cache Social Counts - 10 menit
-    $socialCounts = Cache::remember('social_counts_' . getLangauge(), 10, function () {
-        return SocialCount::where(['status' => 1, 'language' => getLangauge()])->get();
-    });
+        return view('frontend.playlists', compact('playlists', 'featuredPlaylists'));
+    }
 
-    // Cache Most Common Tags - 10 menit
-    $mostCommonTags = Cache::remember('most_common_tags', 10, function () {
-        return $this->mostCommonTags();
-    });
+    // Metode untuk menampilkan detail playlist dan video-videonya
+    public function showPlaylist(string $slug)
+    {
+        $playlist = Playlist::where('slug', $slug)
+            ->where('is_active', 1)
+            ->firstOrFail();
 
-    // Cache Ads - 10 menit
-    $ad = Cache::remember('ad', 10, function () {
-        return Ad::first();
-    });
-
-    return view('frontend.home', compact(
-        'breakingNews',
-        'heroSlider',
-        'recentNews',
-        'popularNews',
-        'categorySectionOne',
-        'categorySectionTwo',
-        'categorySectionThree',
-        'categorySectionFour',
-        'mostViewedPosts',
-        'socialCounts',
-        'mostCommonTags',
-        'ad'
-    ));
-}
-
-
-public function ShowNews(string $slug)
-{
-    // Cache the news based on slug - 10 minutes
-    $news = Cache::remember('news_' . $slug, 10, function () use ($slug) {
-        return News::with(['auther', 'tags', 'comments'])
-            ->where('slug', $slug)
-            ->activeEntries()
-            ->withLocalize()
-            ->first();
-    });
-
-    $this->countView($news);
-
-    // Cache recent news - 10 minutes
-    $recentNews = Cache::remember('recent_news_' . $news->slug, 10, function () use ($news) {
-        return News::with(['category', 'auther'])
-            ->where('slug', '!=', $news->slug)
-            ->activeEntries()
-            ->withLocalize()
+        $videos = Video::where('playlist_id', $playlist->id)
             ->orderBy('id', 'DESC')
+            ->get();
+
+        $otherPlaylists = Playlist::where('id', '!=', $playlist->id)
+            ->where('is_active', 1)
             ->take(4)
             ->get();
-    });
 
-    // Cache common tags - 10 minutes
-    $mostCommonTags = Cache::remember('most_common_tags', 10, function () {
-        return $this->mostCommonTags();
-    });
-
-    // Cache next post - 10 minutes
-    $nextPost = Cache::remember('next_post_' . $news->id, 10, function () use ($news) {
-        return News::where('id', '>', $news->id)
-            ->activeEntries()
-            ->withLocalize()
-            ->orderBy('id', 'asc')
-            ->first();
-    });
-
-    // Cache previous post - 10 minutes
-    $previousPost = Cache::remember('previous_post_' . $news->id, 10, function () use ($news) {
-        return News::where('id', '<', $news->id)
-            ->activeEntries()
-            ->withLocalize()
-            ->orderBy('id', 'desc')
-            ->first();
-    });
-
-    // Cache related posts by category - 10 minutes
-    $relatedPosts = Cache::remember('related_posts_' . $news->category_id . '_slug_' . $news->slug, 10, function () use ($news) {
-        return News::where('slug', '!=', $news->slug)
-            ->where('category_id', $news->category_id)
-            ->activeEntries()
-            ->withLocalize()
-            ->take(5)
-            ->get();
-    });
-
-    // Cache social counts - 10 minutes
-    $socialCounts = Cache::remember('social_counts_' . getLangauge(), 10, function () {
-        return SocialCount::where(['status' => 1, 'language' => getLangauge()])->get();
-    });
-
-    // Cache advertisement - 10 minutes
-    $ad = Cache::remember('ad', 10, function () {
-        return Ad::first();
-    });
-
-    // Cache related news by tag - 10 minutes
-    $relatedNewsByTag = Cache::remember('related_news_by_tag_' . $news->id, 10, function () use ($news) {
-        return News::whereHas('tags', function ($query) use ($news) {
-            $query->whereIn('name', $news->tags->pluck('name'));
-        })
-        ->where('id', '!=', $news->id)
-        ->activeEntries()
-        ->withLocalize()
-        ->take(5)
-        ->get();
-    });
-
-    // Insert internal links if related news by tag exists
-    if ($relatedNewsByTag->isNotEmpty()) {
-        $news = $this->insertInternalLinks($news, $relatedNewsByTag);
+        return view('frontend.playlist-detail', compact('playlist', 'videos', 'otherPlaylists'));
     }
 
-    return view('frontend.news-details', compact(
-        'news', 
-        'recentNews', 
-        'mostCommonTags', 
-        'nextPost', 
-        'previousPost', 
-        'relatedPosts', 
-        'socialCounts', 
-        'ad'
-    ));
-}
-
-      private function getCategorySection($categoryId, $limit)
+    // Metode untuk menampilkan daftar podcast playlists
+    public function podcastPlaylists()
     {
-        return News::where('category_id', $categoryId)
-            ->activeEntries()
-            ->withLocalize()
+        $podcastPlaylists = PodcastPlaylist::where('is_active', 1)
             ->orderBy('id', 'DESC')
-            ->take($limit)
+            ->paginate(9);
+
+        $featuredPodcasts = PodcastPlaylist::where('is_featured', 1)
+            ->where('is_active', 1)
+            ->take(3)
             ->get();
+
+        return view('frontend.podcast-playlists', compact('podcastPlaylists', 'featuredPodcasts'));
     }
 
-    private function getRelatedNewsByTag($news)
+    // Metode untuk menampilkan detail podcast playlist dan podcast-podcastnya
+    public function showPodcastPlaylist(string $slug)
     {
-        return News::whereHas('tags', function ($query) use ($news) {
-            $query->whereIn('name', $news->tags->pluck('name'));
-        })->where('id', '!=', $news->id)
-            ->activeEntries()
-            ->withLocalize()
-            ->inRandomOrder()
+        $podcastPlaylist = PodcastPlaylist::where('slug', $slug)
+            ->where('is_active', 1)
+            ->firstOrFail();
+
+        $podcasts = Podcast::where('playlist_id', $podcastPlaylist->id)
+            ->where('is_active', 1)
+            ->orderBy('publish_date', 'DESC')
+            ->get();
+
+        $otherPodcastPlaylists = PodcastPlaylist::where('id', '!=', $podcastPlaylist->id)
+            ->where('is_active', 1)
+            ->take(4)
+            ->get();
+
+        return view('frontend.podcast-playlist-detail', compact('podcastPlaylist', 'podcasts', 'otherPodcastPlaylists'));
+    }
+
+    // Metode untuk menampilkan detail podcast
+    public function showPodcast(string $playlistSlug, string $podcastSlug)
+    {
+        $podcast = Podcast::whereHas('playlist', function ($query) use ($playlistSlug) {
+            $query->where('slug', $playlistSlug);
+        })
+            ->where('slug', $podcastSlug)
+            ->where('is_active', 1)
+            ->firstOrFail();
+
+        $relatedPodcasts = Podcast::where('id', '!=', $podcast->id)
+            ->where('playlist_id', $podcast->playlist_id)
+            ->where('is_active', 1)
+            ->take(4)
+            ->get();
+
+        return view('frontend.podcast-detail', compact('podcast', 'relatedPodcasts'));
+    }
+
+    // Metode untuk menampilkan halaman streaming
+    public function streaming()
+    {
+        $latestStreaming = Streaming::orderBy('id', 'DESC')->first();
+        $previousStreams = Streaming::where('id', '!=', $latestStreaming->id ?? 0)
+            ->orderBy('id', 'DESC')
             ->take(5)
             ->get();
+
+        return view('frontend.streaming', compact('latestStreaming', 'previousStreams'));
     }
 
-    private function insertInternalLinks($news, $relatedNewsByTag)
+    // Metode untuk menampilkan kategori download
+    public function downloads()
     {
-        $content = $news->content;
-        $links = $this->getLinks($news);
-
-        $content = preg_replace_callback(
-            '/<p[^>]*>(.*?)<\/p>/is',
-            function ($matches) use (&$links) {
-                $paragraph = $matches[1];
-
-                foreach ($links as $keyword => $link) {
-                    if (strpos($paragraph, $keyword) !== false) {
-                        $paragraph = preg_replace(
-                            '/\b' . preg_quote($keyword, '/') . '\b(?![^<>]*>)/i',
-                            '<a href="' . $link . '">' . $keyword . '</a>',
-                            $paragraph,
-                            1
-                        );
-                        unset($links[$keyword]);
-                    }
-                }
-
-                return '<p>' . $paragraph . '</p>';
-            },
-            $content
-        );
-
-        $news->content = $this->insertRelatedLinks($content, $relatedNewsByTag);
-        return $news;
+        $downloadCategories = CatDownload::with('downloads')->get();
+        return view('frontend.downloads', compact('downloadCategories'));
     }
 
-    private function getLinks($news)
+    // Metode untuk menampilkan download berdasarkan kategori
+    public function downloadsByCategory($id)
     {
-        $links = [];
-        $tags = $news->tags;
-        $category = $news->category;
+        $category = CatDownload::findOrFail($id);
+        $downloads = Download::where('cat_download_id', $id)
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
 
-        foreach ($tags as $tag) {
-            $slug = $this->str_slug($tag->name);
-            $slugWithEncodedSpace = str_replace('-', '%20', $slug);
-            $links[$tag->name] = url('/news?tag=' . $slugWithEncodedSpace);
-        }
-
-        if ($category) {
-            $slug = $this->str_slug($category->name);
-            $links[$category->name] = url('/news?category=' . urlencode($slug));
-        }
-
-        return $links;
+        return view('frontend.downloads-by-category', compact('category', 'downloads'));
     }
 
-    private function insertRelatedLinks($content, $relatedNewsByTag)
+    // Metode untuk menampilkan e-koran
+    public function ekoran()
     {
-        $paragraphs = preg_split('/(<\/p>)/i', $content, -1, PREG_SPLIT_DELIM_CAPTURE);
-        $cumulativeWords = 0;
-        $counter = 0;
-        $relatedLinks = $relatedNewsByTag->map(function ($relatedNews) {
-            return $this->formatRelatedLink($relatedNews);
-        })->toArray();
+        $ekoran = Ekoran::orderBy('tanggal_terbit', 'DESC')
+            ->paginate(12);
 
-        foreach ($paragraphs as $key => $paragraph) {
-            if (strip_tags($paragraph) != '') {
-                $cumulativeWords += str_word_count(strip_tags($paragraph));
-
-                if ($cumulativeWords >= 500 && isset($relatedLinks[$counter])) {
-                    $paragraphs[$key] .= $relatedLinks[$counter];
-                    $cumulativeWords = 0;
-                    $counter++;
-                }
-            }
-        }
-
-        return implode('', $paragraphs);
+        return view('frontend.ekoran', compact('ekoran'));
     }
 
-    private function formatRelatedLink($relatedNews)
+    // Metode untuk menampilkan detail e-koran
+    public function showEkoran($id)
     {
-        $link = url('/news-details/' . $relatedNews->slug);
-        $title = $relatedNews->title;
-        return "
-            <div style='display: flex; align-items: center; margin-top: 20px;'>
-                <div style='background-color: #0052a3; width: 4px; height: 40px; margin-right: 10px;'></div>
-                <div>
-                    <p style='font-weight: bold; font-size:16px; margin: 0;'>Baca juga:</p>
-                    <p style='margin: 0;'><a href=\"$link\" style='color: #0052a3; text-decoration: none; font-size: 16px; font-weight:bold;'>$title</a></p>
-                </div>
-            </div>";
+        $ekoran = Ekoran::findOrFail($id);
+        $recentEkoran = Ekoran::where('id', '!=', $id)
+            ->orderBy('tanggal_terbit', 'DESC')
+            ->take(4)
+            ->get();
+
+        return view('frontend.ekoran-detail', compact('ekoran', 'recentEkoran'));
     }
 
-    private function str_slug($string)
+    // Metode untuk menampilkan daftar pendidikan
+    public function pendidikan()
     {
-        return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
+        $pendidikan = Pendidikan::where('is_active', 1)
+            ->orderBy('tanggal_mulai', 'ASC')
+            ->paginate(9);
+
+        $pendidikanAktif = Pendidikan::where('status_pendaftaran', 'buka')
+            ->where('is_active', 1)
+            ->orderBy('tanggal_mulai', 'ASC')
+            ->take(3)
+            ->get();
+
+        return view('frontend.pendidikan', compact('pendidikan', 'pendidikanAktif'));
     }
 
+    // Metode untuk menampilkan detail pendidikan
+    public function showPendidikan($id)
+    {
+        $pendidikan = Pendidikan::findOrFail($id);
+        $relatedPendidikan = Pendidikan::where('id', '!=', $id)
+            ->where('tipe_program', $pendidikan->tipe_program)
+            ->where('is_active', 1)
+            ->take(3)
+            ->get();
 
-    // public function news(Request $request)
-    // {
+        return view('frontend.pendidikan-detail', compact('pendidikan', 'relatedPendidikan'));
+    }
 
-    //     $news = News::query();
+    // Metode untuk menampilkan halaman donasi
+    public function donasi()
+    {
+        $donasi = Donasi::orderBy('id', 'DESC')->get();
+        return view('frontend.donasi', compact('donasi'));
+    }
 
-    //     $news->when($request->has('tag'), function ($query) use ($request) {
-    //         $query->whereHas('tags', function ($query) use ($request) {
-    //             $query->where('name', $request->tag);
-    //         });
-    //     });
-
-    //     $news->when($request->has('category') && !empty($request->category), function ($query) use ($request) {
-    //         $query->whereHas('category', function ($query) use ($request) {
-    //             $query->where('slug', $request->category);
-    //         });
-    //     });
-
-    //     $news->when($request->has('search'), function ($query) use ($request) {
-    //         $query->where(function ($query) use ($request) {
-    //             $query->where('title', 'like', '%' . $request->search . '%')
-    //                 ->orWhere('content', 'like', '%' . $request->search . '%');
-    //         })->orWhereHas('category', function ($query) use ($request) {
-    //             $query->where('name', 'like', '%' . $request->search . '%');
-    //         });
-    //     });
-
-    //     $news = $news->activeEntries()->withLocalize()->paginate(20);
-
-
-    //     $recentNews = News::with(['category', 'auther'])
-    //         ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(4)->get();
-    //     $mostCommonTags = $this->mostCommonTags();
-
-    //     $categories = Category::where(['status' => 1, 'language' => getLangauge()])->get();
-
-    //     $ad = Ad::first();
-
-    //     return view('frontend.news', compact('news', 'recentNews', 'mostCommonTags', 'categories', 'ad'));
-    // }
-    
     public function news(Request $request)
     {
         $news = News::query();
-    
+
         $news->when($request->has('tag'), function ($query) use ($request) {
             $query->whereHas('tags', function ($query) use ($request) {
                 $query->where('name', $request->tag);
             });
         });
-    
+
         $news->when($request->has('category') && !empty($request->category), function ($query) use ($request) {
             $query->whereHas('category', function ($query) use ($request) {
                 $query->where('slug', $request->category);
             });
         });
-    
+
         $news->when($request->has('search'), function ($query) use ($request) {
             $query->where(function ($query) use ($request) {
                 $query->where('title', 'like', '%' . $request->search . '%')
@@ -436,26 +442,20 @@ public function ShowNews(string $slug)
                 $query->where('name', 'like', '%' . $request->search . '%');
             });
         });
-    
+
         $news = $news->activeEntries()->withLocalize()->paginate(20);
-    
+
+
         $recentNews = News::with(['category', 'auther'])
             ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(4)->get();
         $mostCommonTags = $this->mostCommonTags();
-    
-        $categories = Category::where(['status' => 1, 'language' => getLangauge()])->get();
-    
-        $ad = Ad::first();
-    
-        // Fetch the category if the 'category' parameter exists in the request
-        $category = null;
-        if ($request->has('category') && !empty($request->category)) {
-            $category = Category::where('slug', $request->category)->first();
-        }
-    
-        return view('frontend.news', compact('news', 'recentNews', 'mostCommonTags', 'categories', 'ad', 'category'));
-    }
 
+        $categories = Category::where(['status' => 1, 'language' => getLangauge()])->get();
+
+        $ad = Ad::first();
+
+        return view('frontend.news', compact('news', 'recentNews', 'mostCommonTags', 'categories', 'ad'));
+    }
 
     public function countView($news)
     {
@@ -486,7 +486,6 @@ public function ShowNews(string $slug)
 
     public function handleComment(Request $request)
     {
-
         $request->validate([
             'comment' => ['required', 'string', 'max:1000']
         ]);
@@ -503,7 +502,6 @@ public function ShowNews(string $slug)
 
     public function handleReplay(Request $request)
     {
-
         $request->validate([
             'replay' => ['required', 'string', 'max:1000']
         ]);
@@ -550,13 +548,6 @@ public function ShowNews(string $slug)
         $about = About::where('language', getLangauge())->first();
         return view('frontend.about', compact('about'));
     }
-
-    public function kebijakan()
-    {
-        $kebijakan = kebijakan::where('language', getLangauge())->first();
-        return view('frontend.kebijakan', compact('kebijakan'));
-    }
-
 
     public function contact()
     {
