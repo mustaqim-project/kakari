@@ -227,7 +227,9 @@ class HomeController extends Controller
                 ->take(5)
                 ->get();
         });
-
+        $latestEkoran = Ekoran::orderBy('tanggal_terbit', 'DESC')
+            ->take(5)
+            ->get();
         // Insert internal links if related news by tag exists
         if ($relatedNewsByTag->isNotEmpty()) {
             $news = $this->insertInternalLinks($news, $relatedNewsByTag);
@@ -236,7 +238,7 @@ class HomeController extends Controller
         return view('frontend.news-details', compact(
             'news',
             'mostViewedPosts',
-
+            'latestEkoran',
             'recentNews',
             'mostCommonTags',
             'nextPost',
