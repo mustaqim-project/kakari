@@ -42,7 +42,7 @@
 
                     <!-- View More Button -->
                     <div class="text-center mt-4">
-                        <a href="{{ route('news.index') }}" class="btn btn-outline-primary">Lihat Lebih Banyak
+                        <a href="{{ route('news') }}" class="btn btn-outline-primary">Lihat Lebih Banyak
                             Artikel</a>
                     </div>
                 </section>
