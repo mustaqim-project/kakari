@@ -41,7 +41,7 @@ Route::get('language', LanguageController::class)->name('language');
 
 /** News Routes */
 Route::get('kajian-details/{slug}', [HomeController::class, 'ShowNews'])->name('kajian-details');
-Route::get('kajian', [HomeController::class, 'news'])->name('news');
+Route::get('kajian', [HomeController::class, 'news'])->name('kajian');
 
 /** News Comment Routes */
 Route::post('kajian-comment', [HomeController::class, 'handleComment'])->name('kajian-comment');
