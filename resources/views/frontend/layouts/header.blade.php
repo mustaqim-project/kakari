@@ -5,7 +5,7 @@
             <figure class="mb-0 mx-auto">
                 <a href="{{ url('/') }}">
                     <img src="{{ asset($settings['site_logo']) }}" class="img-fluid logo"
-                        aria-label="Go to ic-syekhburhanuddin" alt="ic-syekhburhanuddin Logo">
+                        aria-label="Go to ic-syekhburhanuddin" alt="ic-syekhburhanuddin Logo" height="200">
                 </a>
             </figure>
 
