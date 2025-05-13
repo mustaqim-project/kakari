@@ -488,13 +488,13 @@ h6 {
     /* Default styles already handle desktop */
 }
 .logo {
-    max-height: 3em; /* kira-kira setara 48px jika font-size 16px */
+    max-height: 2em; /* kira-kira setara 48px jika font-size 16px */
     height: auto;
     width: auto;
 }
 
 @media (max-width: 576px) {
     .logo {
-        max-height: 2.5em; /* kira-kira setara 40px */
+        max-height: 1.5em; /* kira-kira setara 40px */
     }
 }
