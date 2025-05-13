@@ -47,8 +47,16 @@
                     </div>
                     <div class="card-body">
                         <!-- Share Buttons - Horizontal Layout -->
+
+
+                        <!-- Video Player -->
+                        <figure class="article-image">
+                            <img src="{{ asset($news->image) }}" alt="{{ $title }}" class="img-fluid">
+                            <figcaption class="image-caption">{{ $news->image_caption ?? $title }}</figcaption>
+                        </figure>
+
                         <div class="share-container mb-4">
-                            <span class="share-label">{{ __('frontend.share on:') }}</span>
+                            <span class="share-label">{{ __('frontend.Share on:') }}</span>
                             <div class="share-buttons d-flex align-items-center">
                                 <a class="btn btn-social facebook me-2"
                                     href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"
@@ -77,13 +85,6 @@
                                 </a>
                             </div>
                         </div>
-
-                        <!-- Video Player -->
-                        <figure class="article-image">
-                            <img src="{{ asset($news->image) }}" alt="{{ $title }}" class="img-fluid">
-                            <figcaption class="image-caption">{{ $news->image_caption ?? $title }}</figcaption>
-                        </figure>
-
                         <!-- Materi Content -->
                         <div class="mb-4">
                             {!! $news->content !!}
