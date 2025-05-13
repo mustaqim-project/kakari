@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset($settings['site_logo']) }}" class="logo" alt="ic-syekhburhanuddin Logo"
+                <img src="{{ asset($settings['site_logo']) }}" class="img-fluid logo" alt="ic-syekhburhanuddin Logo"
                     aria-label="Go to ic-syekhburhanuddin">
             </a>
 

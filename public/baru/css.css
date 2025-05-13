@@ -487,20 +487,20 @@ h6 {
 @media (min-width: 62.0625em) {
     /* Default styles already handle desktop */
 }
+.logo {
+    max-height: 2em;
+    width: auto;
+    height: 300;
+}
+
+@media (max-width: 992px) {
     .logo {
-        max-height: 2em;
-        width: auto;
-        height: 300;
+        max-height: 1.5em;
     }
+}
 
-    @media (max-width: 992px) {
-        .logo {
-            max-height: 1.5em;
-        }
+@media (max-width: 576px) {
+    .logo {
+        max-height: 1em;
     }
-
-    @media (max-width: 576px) {
-        .logo {
-            max-height: 1em;
-        }
-    }
+}
