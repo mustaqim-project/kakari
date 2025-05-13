@@ -413,16 +413,18 @@
 
 
 <section class="py-5" style="background-color: var(--bg);">
-    <div class="container">
-        <!-- Breadcrumb Navigation -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fas fa-home"></i></a></li>
-                <li class="breadcrumb-item"><a href="{{ route('news') }}">Kajian</a></li>
-            </ol>
-        </nav>
+    <div class="row">
 
-        <div class="row">
+        <div class="col-md-12">
+            <!-- Breadcrumb Navigation -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fas fa-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('news') }}">Kajian</a></li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-8">
             <!-- Main Content - Detail Materi -->
             <div class="col-lg-8">
                 <div class="card shadow-sm">
@@ -430,7 +432,8 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">{!! $news->title !!}</h5>
                             <div>
-                                <span class="badge bg-white text-primary me-2"><i class="fas fa-clock me-1"></i> {{ date('M d, Y', strtotime($news->created_at)) }}</span>
+                                <span class="badge bg-white text-primary me-2"><i class="fas fa-clock me-1"></i>
+                                    {{ date('M d, Y', strtotime($news->created_at)) }}</span>
                                 <span class="badge bg-white text-primary"><i class="fas fa-eye me-1"></i>
                                     {{ date('M d, Y', strtotime($news->created_at)) }}</span>
                             </div>
@@ -606,9 +609,9 @@
 
 
             </div>
-        </div>
 
-        <div class="col-lg-4">
+
+            <div class="col-lg-4">
                 <!-- Search Widget -->
                 @include('frontend.components.sidebar.search-widget')
 
@@ -626,6 +629,7 @@
                 @include('frontend.components.sidebar.newsletter')
 
             </div>
+        </div>
     </div>
 </section>
 @endsection
