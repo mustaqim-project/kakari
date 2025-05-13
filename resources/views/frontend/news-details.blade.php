@@ -46,6 +46,47 @@
                         </div>
                     </div>
                     <div class="card-body">
+
+                        <span class="share-label">{{ __('frontend.share on:') }}</span>
+                        <ul class="share-buttons">
+                            <li>
+                                <a class="btn btn-social facebook"
+                                    href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"
+                                    target="_blank">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn btn-social twitter"
+                                    href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ url()->current() }}"
+                                    target="_blank">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn btn-social whatsapp"
+                                    href="https://wa.me/?text={{ $news->title }}%20{{ url()->current() }}"
+                                    target="_blank">
+                                    <i class="fa fa-whatsapp"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn btn-social telegram"
+                                    href="https://t.me/share/url?url={{ url()->current() }}&text={{ $news->title }}"
+                                    target="_blank">
+                                    <i class="fa fa-telegram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn btn-social linkedin"
+                                    href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}&title={{ $news->title }}"
+                                    target="_blank">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+
                         <!-- Video Player -->
                         <figure class="article-image">
                             <img src="{{ asset($news->image) }}" alt="{{ $title }}" class="img-fluid">
