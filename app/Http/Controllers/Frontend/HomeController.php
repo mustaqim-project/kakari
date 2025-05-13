@@ -415,51 +415,45 @@ class HomeController extends Controller
         return view('frontend.donasi', compact('donasi'));
     }
 
-    public function news(Request $request)
+        public function news(Request $request)
     {
+
         $news = News::query();
 
-        // Filter berdasarkan tag
-        if ($request->filled('tag')) {
-            $news->whereHas('tags', function ($query) use ($request) {
+        $news->when($request->has('tag'), function($query) use ($request){
+            $query->whereHas('tags', function($query) use ($request){
                 $query->where('name', $request->tag);
             });
-        }
+        });
 
-        // Filter berdasarkan kategori
-        if ($request->filled('category')) {
-            $news->whereHas('category', function ($query) use ($request) {
+        $news->when($request->has('category') && !empty($request->category), function($query) use ($request) {
+            $query->whereHas('category', function($query) use ($request) {
                 $query->where('slug', $request->category);
             });
-        }
+        });
 
-        // Pencarian
-        if ($request->filled('keyword')) {
-            $news->where(function ($query) use ($request) {
-                $query->where('title', 'like', '%' . $request->keyword . '%')
-                    ->orWhere('content', 'like', '%' . $request->keyword . '%');
-            })->orWhereHas('category', function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->keyword . '%');
+        $news->when($request->has('search'), function($query) use ($request) {
+            $query->where(function($query) use ($request){
+                $query->where('title', 'like','%'.$request->search.'%')
+                    ->orWhere('content', 'like','%'.$request->search.'%');
+            })->orWhereHas('category', function($query) use ($request){
+                $query->where('name', 'like','%'.$request->search.'%');
             });
-        }
+        });
 
-        // Ambil hasil akhir dengan filter aktif dan lokal
         $news = $news->activeEntries()->withLocalize()->paginate(20);
 
-        // Berita terbaru
-        $recentNews = News::with(['category', 'auther'])
-            ->activeEntries()->withLocalize()->latest()->take(4)->get();
 
-        // Tag dan kategori
+        $recentNews = News::with(['category', 'auther'])
+            ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(4)->get();
         $mostCommonTags = $this->mostCommonTags();
+
         $categories = Category::where(['status' => 1, 'language' => getLangauge()])->get();
 
-        // Iklan
         $ad = Ad::first();
 
         return view('frontend.news', compact('news', 'recentNews', 'mostCommonTags', 'categories', 'ad'));
     }
-
 
     public function countView($news)
     {
