@@ -46,46 +46,37 @@
                         </div>
                     </div>
                     <div class="card-body">
-
-                        <span class="share-label">{{ __('frontend.share on:') }}</span>
-                        <ul class="share-buttons">
-                            <li>
-                                <a class="btn btn-social facebook"
+                        <!-- Share Buttons - Horizontal Layout -->
+                        <div class="share-container mb-4">
+                            <span class="share-label">{{ __('frontend.share on:') }}</span>
+                            <div class="share-buttons d-flex align-items-center">
+                                <a class="btn btn-social facebook me-2"
                                     href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"
-                                    target="_blank">
-                                    <i class="fa fa-facebook-f"></i>
+                                    target="_blank" title="Share on Facebook">
+                                    <i class="fab fa-facebook-f"></i> Facebook
                                 </a>
-                            </li>
-                            <li>
-                                <a class="btn btn-social twitter"
+                                <a class="btn btn-social twitter me-2"
                                     href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ url()->current() }}"
-                                    target="_blank">
-                                    <i class="fa fa-twitter"></i>
+                                    target="_blank" title="Share on Twitter">
+                                    <i class="fab fa-twitter"></i> Twitter
                                 </a>
-                            </li>
-                            <li>
-                                <a class="btn btn-social whatsapp"
+                                <a class="btn btn-social whatsapp me-2"
                                     href="https://wa.me/?text={{ $news->title }}%20{{ url()->current() }}"
-                                    target="_blank">
-                                    <i class="fa fa-whatsapp"></i>
+                                    target="_blank" title="Share on WhatsApp">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
                                 </a>
-                            </li>
-                            <li>
-                                <a class="btn btn-social telegram"
+                                <a class="btn btn-social telegram me-2"
                                     href="https://t.me/share/url?url={{ url()->current() }}&text={{ $news->title }}"
-                                    target="_blank">
-                                    <i class="fa fa-telegram"></i>
+                                    target="_blank" title="Share on Telegram">
+                                    <i class="fab fa-telegram"></i> Telegram
                                 </a>
-                            </li>
-                            <li>
                                 <a class="btn btn-social linkedin"
                                     href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}&title={{ $news->title }}"
-                                    target="_blank">
-                                    <i class="fa fa-linkedin"></i>
+                                    target="_blank" title="Share on LinkedIn">
+                                    <i class="fab fa-linkedin"></i> LinkedIn
                                 </a>
-                            </li>
-                        </ul>
-
+                            </div>
+                        </div>
 
                         <!-- Video Player -->
                         <figure class="article-image">
@@ -97,8 +88,6 @@
                         <div class="mb-4">
                             {!! $news->content !!}
                         </div>
-
-
 
                         <!-- Navigation Between Materi -->
                         <div class="d-flex justify-content-between mt-4">
@@ -113,10 +102,9 @@
                                     {!! truncate($nextPost->title) !!}<i class="fas fa-arrow-right ms-2"></i>
                                 </a>
                             @endif
-
-
                         </div>
                     </div>
+
 
                     <!-- Comments Section -->
                     @auth
@@ -309,16 +297,16 @@
             let id = $(this).data('id');
             Swal.fire({
                 title: '{{ __('
-                                                                frontend.Are you sure ? ') }}',
+                                                                                frontend.Are you sure ? ') }}',
                 text: "{{ __("
-                                                                frontend.You won '\t be able to revert this!") }}",
+                                                                                frontend.You won '\t be able to revert this!") }}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: '{{ __('
-                                                                frontend.Yes,
-                                                                delete it!') }}'
+                                                                                frontend.Yes,
+                                                                                delete it!') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
 
