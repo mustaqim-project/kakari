@@ -489,8 +489,8 @@ h6 {
 }
 .logo {
     max-height: 2em;
-    width: auto;
-    height: 300;
+    width: 300;
+    height: auto;
 }
 
 @media (max-width: 992px) {
