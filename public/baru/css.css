@@ -488,19 +488,19 @@ h6 {
     /* Default styles already handle desktop */
 }
     .logo {
-        max-height: 3em;
+        max-height: 2em;
         width: auto;
         height: auto;
     }
 
     @media (max-width: 992px) {
         .logo {
-            max-height: 2.5em;
+            max-height: 1.5em;
         }
     }
 
     @media (max-width: 576px) {
         .logo {
-            max-height: 2em;
+            max-height: 1em;
         }
     }
