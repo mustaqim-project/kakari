@@ -5,7 +5,7 @@
             <div class="col-lg-8">
                 <!-- Latest Articles Section -->
                 <section class="mb-5">
-                    <h2 class="section-title mb-4">Artikel Terbaru</h2>
+                    <h2 class="section-title mb-4">Kajian Terbaru</h2>
 
                     <!-- Grid Layout -->
                     <div class="row g-4">
@@ -43,12 +43,12 @@
                     <!-- View More Button -->
                     <div class="text-center mt-4">
                         <a href="{{ route('kajian') }}" class="btn btn-outline-primary">Lihat Lebih Banyak
-                            Artikel</a>
+                            Kajian</a>
                     </div>
                 </section>
 
                 <!-- Kajian Terbaru Section -->
-                <section class="mb-5">
+                {{-- <section class="mb-5">
                     <h2 class="section-title mb-4">Kajian Terbaru</h2>
                     @if ($categorySectionTwo->count() > 0)
                         <div class="card mb-3">
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                     @endif
-                </section>
+                </section> --}}
             </div>
 
             <!-- Sidebar -->
