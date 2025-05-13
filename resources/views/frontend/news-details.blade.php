@@ -26,8 +26,8 @@
                 <!-- Breadcrumb Navigation -->
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fas fa-home"></i></a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('news') }}">Kajian</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fas fa-home"></i>Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('news') }}">Artikel</a></li>
                     </ol>
                 </nav>
             </div>
@@ -117,7 +117,8 @@
                                                             class="fas fa-reply me-1"></i>Balas</a>
                                                     <a href="#" class="text-primary"><i
                                                             class="fas fa-thumbs-up me-1"></i>Suka
-                                                        ({{ $comment->likes }})</a>
+                                                        ({{ $comment->likes }})
+                                                    </a>
                                                 </div>
 
                                                 <!-- Replies -->
@@ -142,7 +143,8 @@
                                                                                 class="fas fa-reply me-1"></i>Balas</a>
                                                                         <a href="#" class="text-primary"><i
                                                                                 class="fas fa-thumbs-up me-1"></i>Suka
-                                                                            ({{ $reply->likes }})</a>
+                                                                            ({{ $reply->likes }})
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -202,45 +204,32 @@
                 </div>
 
                 <!-- Related Materi -->
-                <div class="card shadow-sm mt-4">
-                    <div class="card-header bg-light">
-                        <h5 class="mb-0"><i class="fas fa-link me-2"></i>Materi Terkait</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="card border-0 shadow-sm h-100">
-                                    <div class="card-body">
-                                        <span class="badge bg-primary mb-2">Tafsir & Hadis</span>
-                                        <h5>Tafsir Surah Al-Mulk</h5>
-                                        <p class="card-text">Kajian mendalam tentang surah yang menyelamatkan dari azab
-                                            kubur.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <small class="text-muted"><i class="fas fa-clock me-1"></i> 10
-                                                Episode</small>
-                                            <a href="#" class="btn btn-sm btn-outline-primary">Lihat</a>
+                @if (count($relatedPosts) > 0)
+                    <div class="card shadow-sm mt-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0"><i class="fas fa-link me-2"></i>Relate Post</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                @foreach ($relatedPosts as $post)
+                                    <div class="col-md-6">
+                                        <div class="card border-0 shadow-sm h-100">
+                                            <div class="card-body">
+                                                <span class="badge bg-primary mb-2">{{ $post->category->name }}</span>
+                                                <h5>{!! truncate($post->title) !!}</h5>
+                                                <p class="card-text">
+                                                    {{ \Illuminate\Support\Str::limit($post->excerpt, 100) }}</p>
+                                                <a href="{{ route('news-details', $post->slug) }}"
+                                                    class="btn btn-outline-primary">Read More</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card border-0 shadow-sm h-100">
-                                    <div class="card-body">
-                                        <span class="badge bg-primary mb-2">Tafsir & Hadis</span>
-                                        <h5>Tafsir Surah Ar-Rahman</h5>
-                                        <p class="card-text">Pemahaman mendalam tentang nikmat-nikmat Allah yang
-                                            disebutkan berulang.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <small class="text-muted"><i class="fas fa-clock me-1"></i> 8
-                                                Episode</small>
-                                            <a href="#" class="btn btn-sm btn-outline-primary">Lihat</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
+
             </div>
             <div class="col-lg-4">
                 <!-- Search Widget -->
@@ -279,16 +268,16 @@
             let id = $(this).data('id');
             Swal.fire({
                 title: '{{ __('
-                                                frontend.Are you sure ? ') }}',
+                                                                frontend.Are you sure ? ') }}',
                 text: "{{ __("
-                                                frontend.You won '\t be able to revert this!") }}",
+                                                                frontend.You won '\t be able to revert this!") }}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: '{{ __('
-                                                frontend.Yes,
-                                                delete it!') }}'
+                                                                frontend.Yes,
+                                                                delete it!') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
 
