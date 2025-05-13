@@ -248,7 +248,7 @@ class HomeController extends Controller
         ));
     }
 
-    public function news(Request $request)
+    public function kajian(Request $request)
     {
         $news = News::query();
 
