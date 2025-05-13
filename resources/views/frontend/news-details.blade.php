@@ -602,8 +602,30 @@
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
         </div>
+
+        <div class="col-lg-4">
+                <!-- Search Widget -->
+                @include('frontend.components.sidebar.search-widget')
+
+                <!-- Popular Articles -->
+                @include('frontend.components.sidebar.popular-articles')
+
+                <!-- Categories -->
+                @include('frontend.components.sidebar.categories')
+
+                <!-- E-Koran -->
+                @include('frontend.components.sidebar.e-koran')
+
+
+                <!-- Newsletter Subscription -->
+                @include('frontend.components.sidebar.newsletter')
+
+            </div>
     </div>
 </section>
 @endsection
