@@ -122,9 +122,7 @@ class HomeController extends Controller
             ->get();
 
 
-         $mostCommonTags = Cache::remember('most_common_tags', 10, function () {
-            return $this->mostCommonTags();
-        });
+        $mostCommonTags = $this->mostCommonTags();
 
         $ad = Ad::first();
 
