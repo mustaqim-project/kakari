@@ -204,10 +204,7 @@ public function ShowNews(string $slug)
                 ->get();
         });
 
-        // Cache social counts - 10 minutes
-        $socialCounts = Cache::remember('social_counts_' . getLangauge(), 10, function () {
-            return SocialCount::where(['status' => 1, 'language' => getLangauge()])->get();
-        });
+
 
         // Cache advertisement - 10 minutes
         $ad = Cache::remember('ad', 10, function () {
@@ -238,7 +235,6 @@ public function ShowNews(string $slug)
             'nextPost',
             'previousPost',
             'relatedPosts',
-            'socialCounts',
             'ad'
         ));
     }
