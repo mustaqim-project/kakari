@@ -30,6 +30,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
+
 class HomeController extends Controller
 {
     public function index()
@@ -147,7 +148,7 @@ class HomeController extends Controller
         ));
     }
 
-public function ShowNews(string $slug)
+    public function ShowNews(string $slug)
     {
         // Cache the news based on slug - 10 minutes
         $news = Cache::remember('news_' . $slug, 10, function () use ($slug) {
@@ -418,40 +419,47 @@ public function ShowNews(string $slug)
     {
         $news = News::query();
 
-        $news->when($request->has('tag'), function ($query) use ($request) {
-            $query->whereHas('tags', function ($query) use ($request) {
+        // Filter berdasarkan tag
+        if ($request->filled('tag')) {
+            $news->whereHas('tags', function ($query) use ($request) {
                 $query->where('name', $request->tag);
             });
-        });
+        }
 
-        $news->when($request->has('category') && !empty($request->category), function ($query) use ($request) {
-            $query->whereHas('category', function ($query) use ($request) {
+        // Filter berdasarkan kategori
+        if ($request->filled('category')) {
+            $news->whereHas('category', function ($query) use ($request) {
                 $query->where('slug', $request->category);
             });
-        });
+        }
 
-        $news->when($request->has('search'), function ($query) use ($request) {
-            $query->where(function ($query) use ($request) {
-                $query->where('title', 'like', '%' . $request->search . '%')
-                    ->orWhere('content', 'like', '%' . $request->search . '%');
+        // Pencarian
+        if ($request->filled('keyword')) {
+            $news->where(function ($query) use ($request) {
+                $query->where('title', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('content', 'like', '%' . $request->keyword . '%');
             })->orWhereHas('category', function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->search . '%');
+                $query->where('name', 'like', '%' . $request->keyword . '%');
             });
-        });
+        }
 
+        // Ambil hasil akhir dengan filter aktif dan lokal
         $news = $news->activeEntries()->withLocalize()->paginate(20);
 
-
+        // Berita terbaru
         $recentNews = News::with(['category', 'auther'])
-            ->activeEntries()->withLocalize()->orderBy('id', 'DESC')->take(4)->get();
-        $mostCommonTags = $this->mostCommonTags();
+            ->activeEntries()->withLocalize()->latest()->take(4)->get();
 
+        // Tag dan kategori
+        $mostCommonTags = $this->mostCommonTags();
         $categories = Category::where(['status' => 1, 'language' => getLangauge()])->get();
 
+        // Iklan
         $ad = Ad::first();
 
         return view('frontend.news', compact('news', 'recentNews', 'mostCommonTags', 'categories', 'ad'));
     }
+
 
     public function countView($news)
     {
