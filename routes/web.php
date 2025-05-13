@@ -113,7 +113,7 @@ Route::get('zakat', [HomeController::class, 'zakat'])->name('zakat');
 Route::get('live', [HomeController::class, 'live'])->name('live');
 
 // Route News
-Route::get('news', [HomeController::class, 'newsIndex'])->name('news.index');
+// Route::get('news', [HomeController::class, 'newsIndex'])->name('news.index');
 Route::get('news/{slug}', [HomeController::class, 'showNews'])->name('news.show');
 
 // Route Search
