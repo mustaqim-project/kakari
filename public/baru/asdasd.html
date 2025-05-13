@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miluv - Platform Persiapan Pernikahan Generasi Muda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deepseek-primary: #6e3bdc;
+            --deepseek-dark: #5a2fbb;
+            --deepseek-light: #8a5eff;
+            --deepseek-lighter: #b79eff;
+            --deepseek-accent: #ff9e3d;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient-purple: linear-gradient(135deg, var(--deepseek-primary), var(--deepseek-dark));
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .bg-deepseek {
+            background-color: var(--deepseek-primary);
+        }
+        
+        .bg-gradient-deepseek {
+            background: var(--gradient-purple);
+        }
+        
+        .text-deepseek {
+            color: var(--deepseek-primary);
+        }
+        
+        .btn-deepseek {
+            background-color: var(--deepseek-primary);
+            color: white;
+            border-color: var(--deepseek-primary);
+        }
+        
+        .btn-deepseek:hover {
+            background-color: var(--deepseek-dark);
+            border-color: var(--deepseek-dark);
+            color: white;
+        }
+        
+        .btn-accent {
+            background-color: var(--deepseek-accent);
+            color: white;
+            border-color: var(--deepseek-accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #e68a35;
+            border-color: #e68a35;
+            color: white;
+        }
+        
+        .hero-section {
+            background: var(--gradient-purple);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            opacity: 0.08;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--deepseek-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(110, 59, 220, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            border-left: 5px solid var(--deepseek-primary);
+            background: white;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(110, 59, 220, 0.2);
+        }
+        
+        .mission-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(110, 59, 220, 0.1);
+            padding: 30px;
+            height: 100%;
+            border-top: 4px solid var(--deepseek-primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(110, 59, 220, 0.1);
+            padding: 30px;
+            height: 100%;
+            border-bottom: 4px solid var(--deepseek-light);
+        }
+        
+        .testimonial-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--deepseek-primary);
+        }
+        
+        .pricing-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(110, 59, 220, 0.1);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(110, 59, 220, 0.2);
+        }
+        
+        .pricing-header {
+            background: var(--gradient-purple);
+            color: white;
+            padding: 30px 0;
+        }
+        
+        .pricing-popular {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-popular::after {
+            content: 'POPULER';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--deepseek-accent);
+            color: white;
+            padding: 3px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .how-it-works-step {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .app-screenshot {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(110, 59, 220, 0.15);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(110, 59, 220, 0.1);
+        }
+        
+        .app-screenshot:hover {
+            transform: scale(1.05);
+        }
+        
+        .cta-section {
+            background: var(--gradient-purple);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            opacity: 0.08;
+            z-index: 0;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--deepseek-light);
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--deepseek-primary);
+            transform: translateY(-3px);
+        }
+        
+        .heart-icon {
+            color: var(--deepseek-accent);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            background: rgba(26, 26, 46, 0.9) !important;
+        }
+        
+        .navbar.scrolled {
+            background: white !important;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 10px 0;
+        }
+        
+        .navbar.scrolled .nav-link {
+            color: #333 !important;
+        }
+        
+        .navbar.scrolled .navbar-brand {
+            color: var(--deepseek-primary) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--deepseek-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .navbar.scrolled .logo-text {
+            color: var(--deepseek-primary) !important;
+        }
+        
+        .logo-heart {
+            color: var(--deepseek-accent);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--deepseek-primary);
+            border-radius: 2px;
+        }
+        
+        .about-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: var(--deepseek-light);
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .about-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 7px;
+            height: 100%;
+            width: 2px;
+            background: var(--deepseek-primary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: -30px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--deepseek-primary);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--deepseek-primary);
+        }
+        
+        .differentiator-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 5px 25px rgba(110, 59, 220, 0.1);
+            border-top: 4px solid var(--deepseek-primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .differentiator-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .differentiator-icon {
+            font-size: 2rem;
+            color: var(--deepseek-primary);
+            margin-bottom: 15px;
+        }
+        
+        .highlight-text {
+            background: linear-gradient(90deg, var(--deepseek-primary), var(--deepseek-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="logo-text">Miluv</span> <span class="logo-heart"><i class="fas fa-heart"></i></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mission">Misi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#differentiators">Keunggulan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Fitur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Harga</a>
+                    </li>
+                </ul>
+                <div class="ms-lg-3 mt-3 mt-lg-0">
+                    <a href="#download" class="btn btn-accent">Download Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 fw-bold mb-4">Persiapkan Dirimu Menuju <span class="highlight-text">Pernikahan Bahagia</span></h1>
+                    <p class="lead mb-5">Miluv adalah platform kencan dan edukasi relasi yang membantu generasi muda mempersiapkan diri menuju pernikahan yang sehat, bahagia, dan bertanggung jawab.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#download" class="btn btn-light btn-lg px-4">
+                            <i class="fas fa-download me-2"></i>Download App
+                        </a>
+                        <a href="#about" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-info-circle me-2"></i>Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Happy Couple" class="img-fluid floating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 about-section">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="About Miluv" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6 about-content mt-5 mt-lg-0">
+                    <h2 class="section-title">Tentang Miluv</h2>
+                    <p>Miluv adalah platform kencan dan edukasi relasi yang berdiri pada tahun 2025, dengan misi untuk membantu generasi muda mempersiapkan diri menuju pernikahan yang bahagia, sehat, dan bertanggung jawab.</p>
+                    <p>Kami mengangkat isu "married is scary" karena banyak orang yang memasuki pernikahan tanpa kesiapan yang cukup, baik secara mental maupun emosional. Kami percaya bahwa pernikahan bukan hanya tentang menemukan pasangan yang tepat, tetapi juga tentang mempersiapkan diri dengan matang untuk komitmen jangka panjang.</p>
+                    <p>Di Miluv, kami tidak hanya membantu orang menemukan pasangan, tetapi juga memberikan edukasi tentang relasi, komunikasi, dan kesiapan mental untuk membangun rumah tangga yang sehat.</p>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-lg-6 about-content">
+                    <h3 class="section-title">Visi Kami</h3>
+                    <div class="p-4 bg-light rounded shadow-sm">
+                        <h4 class="text-deepseek">Menjadi platform persiapan kehidupan berkeluarga terpercaya yang menurunkan angka perceraian Indonesia 30% hingga 2030.</h4>
+                    </div>
+                </div>
+                <div class="col-lg-6 about-content">
+                    <h3 class="section-title">Sejarah Miluv</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2025</div>
+                            <p>Miluv didirikan dengan tujuan untuk mengubah pandangan generasi muda tentang pernikahan. Kami memulai dengan kampanye "Married is Scary", yang bertujuan untuk meningkatkan pemahaman tentang kesiapan mental dan emosional dalam membangun pernikahan yang sehat.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2026</div>
+                            <p>Fokus pada edukasi – Miluv tidak hanya menyediakan platform untuk pertemuan, tetapi juga berkomitmen untuk menyediakan modul edukasi yang membantu calon pasangan memahami pentingnya komunikasi, kesiapan mental, dan tanggung jawab dalam pernikahan.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2027</div>
+                            <p>Menurunkan angka perceraian – Kami berfokus pada mencegah perceraian melalui program pendidikan dan pendampingan yang memberikan bekal yang cukup sebelum memasuki kehidupan pernikahan yang sesungguhnya.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-5 fw-bold mb-3">Misi Kami</h2>
+                <p class="lead text-muted">Tiga pilar utama yang menjadi fondasi Miluv</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="text-center mb-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h4>Matching</h4>
+                        </div>
+                        <p>Menghubungkan individu dengan keselarasan nilai dalam 4 dimensi kehidupan:</p>
+                        <ul>
+                            <li>Spiritual</li>
+                            <li>Emosional</li>
+                            <li>Intelektual</li>
+                            <li>Finansial</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="text-center mb-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Educating</h4>
+                        </div>
+                        <ul>
+                            <li>Menyediakan modul pembelajaran "12 Bulan Menuju Pernikahan Bahagia"</li>
+                            <li>Kelas daring bersama psikolog dan praktisi keluarga untuk memperkaya pengetahuan dalam membangun hubungan yang sehat.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="text-center mb-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h4>Advocating</h4>
+                        </div>
+                        <p>Kampanye #SadarNikah untuk mendorong pasangan calon pengantin untuk:</p>
+                        <ul>
+                            <li>Medical check-up pranikah</li>
+                            <li>Financial planning bersama</li>
+                            <li>Tes kepribadian wajib</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiators Section -->
+    <section id="differentiators" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-5 fw-bold mb-3">Apa yang Membuat Miluv Berbeda?</h2>
+                <p class="lead text-muted">Keunggulan yang membuat Miluv menjadi pilihan terbaik untuk persiapan pernikahan</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="differentiator-card">
+                        <div class="differentiator-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h4>Pre-Marriage GPS</h4>
+                        <p>Kami menggunakan algoritma prediktif untuk membantu pasangan mempersiapkan pernikahan dengan lebih baik, dengan mengukur:</p>
+                        <ul>
+                            <li>Resiko konflik berdasarkan pola komunikasi yang ada.</li>
+                            <li>Kesiapan menjadi orang tua, memastikan pasangan siap untuk peran tersebut.</li>
+                            <li>Adaptabilitas dalam krisis, mengukur kemampuan pasangan untuk bertahan dan beradaptasi dalam masa-masa sulit.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="differentiator-card">
+                        <div class="differentiator-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Generasi Muda yang Siap Menikah</h4>
+                        <p>Kami hadir untuk mendukung generasi muda yang ingin menikah, memastikan mereka siap menghadapi tantangan kehidupan berkeluarga yang sejati, dan menghindari Attachment Disruption dan Emotional Neglect yang dapat memengaruhi perkembangan anak.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-5 fw-bold mb-3">Fitur Unggulan Miluv</h2>
+                <p class="lead text-muted">Berbagai fitur psikologis yang membantu Anda menemukan dan mempersiapkan pasangan ideal</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3 text-deepseek">
+                                <i class="fas fa-check-circle fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5>Asesmen Kesiapan Menikah</h5>
+                                <p class="mb-0">Sebuah asesmen lengkap untuk mengukur kematangan emosional, kesiapan finansial, stabilitas hubungan sosial & keluarga, dan pemahaman akan nilai-nilai pernikahan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3 text-deepseek">
+                                <i class="fas fa-brain fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5>Tes Kepribadian MBTI</h5>
+                                <p class="mb-0">Tes MBTI yang akurat untuk mengungkap tipe kepribadian, gaya komunikasi, dan preferensi pasangan. Hasil tes digunakan untuk mencocokkan pengguna dengan tipe kepribadian yang paling serasi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3 text-deepseek">
+                                <i class="fas fa-heart fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5>Tes Love Language</h5>
+                                <p class="mb-0">Mengidentifikasi bagaimana cara seseorang memberi dan menerima cinta: Words of Affirmation, Acts of Service, Receiving Gifts, Quality Time, Physical Touch.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3 text-deepseek">
+                                <i class="fas fa-chess-queen fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5>Tes Dominansi dalam Hubungan</h5>
+                                <p class="mb-0">Mengukur gaya dominasi dan peran dalam hubungan: Dominan, Submisif, atau Seimbang. Berguna untuk menyesuaikan dinamika relasi pasangan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3 text-deepseek">
+                                <i class="fas fa-smile fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5>Tes Temperamen & Emosional</h5>
+                                <p class="mb-0">Menilai kecenderungan temperamen seseorang: Sanguinis (ceria, spontan), Koleris (tegas, pemimpin), Melankolis (sensitif, perfeksionis), Plegmatis (tenang, penyabar).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3 text-deepseek">
+                                <i class="fas fa-people-arrows fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5>Smart Matching Algorithm</h5>
+                                <p class="mb-0">Pencocokan pasangan berdasarkan hasil asesmen dan tes psikologis, lokasi, pendidikan, agama, gender, serta preferensi pribadi dan nilai hidup.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Features Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3 text-deepseek">
+                                <i class="fas fa-comments fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5>Private Chat & Match</h5>
+                                <p class="mb-0">Hanya pengguna yang match bisa saling chat dengan fitur safe mode untuk privasi lebih tinggi. Tersedia status online dan histori percakapan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3 text-deepseek">
+                                <i class="fas fa-user-check fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5>Profil Terverifikasi & Lengkap</h5>
+                                <p class="mb-0">Profil mencakup hasil tes dan asesmen dengan opsi mengatur visibilitas (publik/privat). Dilengkapi bio, foto, dan informasi penting lainnya.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3 text-deepseek">
+                                <i class="fas fa-users fa-lg"></i>
+                            </div>
+                            <div>
+                                <h5>Mini Sosial Media</h5>
+                                <p class="mb-0">Fitur post, komentar, dan simpan konten dalam komunitas yang mendukung untuk sharing pengalaman dan wawasan tentang pernikahan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-5 fw-bold mb-3">Paket Langganan</h2>
+                <p class="lead text-muted">Pilih paket yang sesuai dengan kebutuhan Anda</p>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <div class="pricing-header text-center p-4">
+                            <h4 class="text-white">Free</h4>
+                            <div class="pricing-price text-white">Gratis</div>
+                            <small class="text-white">Selamanya</small>
+                        </div>
+                        <div class="p-4">
+                            <ul class="list-unstyled pricing-features">
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Buat profil lengkap</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Tes kesiapan menikah dasar</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Request chat (30/hari)</li>
+                                <li class="py-2 d-flex align-items-center text-muted"><i class="fas fa-times me-2"></i> Filter pencarian terbatas</li>
+                                <li class="py-2 d-flex align-items-center text-muted"><i class="fas fa-times me-2"></i> Tes psikologis lengkap</li>
+                                <li class="py-2 d-flex align-items-center text-muted"><i class="fas fa-times me-2"></i> Prioritas dalam pencocokan</li>
+                                <li class="py-2 d-flex align-items-center text-muted"><i class="fas fa-times me-2"></i> Fitur Explore</li>
+                                <li class="py-2 d-flex align-items-center text-muted"><i class="fas fa-times me-2"></i> Tanpa Iklan</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-deepseek w-100">Gunakan Gratis</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="pricing-card pricing-popular">
+                        <div class="pricing-header text-center p-4">
+                            <h4 class="text-white">Gold</h4>
+                            <div class="pricing-price text-white">Rp97.000<span class="fs-6">/bulan</span></div>
+                            <small class="text-white">Bisa berhenti kapan saja</small>
+                        </div>
+                        <div class="p-4">
+                            <ul class="list-unstyled pricing-features">
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Semua fitur Free</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Request chat tanpa batas</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Filter pencarian lengkap</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Tes psikologis lengkap</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Prioritas dalam pencocokan</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Fitur Explore</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Tanpa Iklan</li>
+                                <li class="py-2 d-flex align-items-center text-muted"><i class="fas fa-times me-2"></i> Konsultasi gratis dengan ahli</li>
+                            </ul>
+                            <a href="#" class="btn btn-deepseek w-100">Daftar Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <div class="pricing-header text-center p-4">
+                            <h4 class="text-white">Platinum</h4>
+                            <div class="pricing-price text-white">Rp243.000<span class="fs-6">/bulan</span></div>
+                            <small class="text-white">Bisa berhenti kapan saja</small>
+                        </div>
+                        <div class="p-4">
+                            <ul class="list-unstyled pricing-features">
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Semua fitur Gold</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Konsultasi gratis dengan ahli</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Webinar pernikahan eksklusif</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Ebook persiapan pernikahan</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Akses prioritas 24/7</li>
+                                <li class="py-2 d-flex align-items-center"><i class="fas fa-check text-success me-2"></i> Chat tanpa request</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-deepseek w-100">Daftar Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Siapa Pengguna Miluv?</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="fas fa-check-circle text-deepseek me-3 mt-1"></i>
+                            <span>Usia 21–40 tahun yang serius ingin menikah dalam waktu dekat</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="fas fa-check-circle text-deepseek me-3 mt-1"></i>
+                            <span>Tertarik pada pendekatan emosional dan spiritual dalam hubungan</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="fas fa-check-circle text-deepseek me-3 mt-1"></i>
+                            <span>Peduli pada nilai, karakter, dan kualitas hubungan jangka panjang</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="fas fa-check-circle text-deepseek me-3 mt-1"></i>
+                            <span>Menginginkan persiapan matang sebelum memasuki pernikahan</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="p-4 bg-light rounded shadow-sm border-start border-5 border-deepseek">
+                        <h4 class="text-deepseek">Miluv Bukan Sekadar Dating App</h4>
+                        <p>Miluv adalah solusi modern untuk generasi yang ingin:</p>
+                        <ul>
+                            <li>Menemukan pasangan yang benar-benar compatible</li>
+                            <li>Membangun hubungan berdasarkan nilai, bukan sekadar penampilan</li>
+                            <li>Memahami diri sendiri sebelum memilih pasangan hidup</li>
+                            <li>Mempersiapkan pernikahan dengan matang secara mental dan emosional</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="download" class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center cta-content">
+                    <h2 class="display-5 fw-bold mb-4">Siap Memulai Perjalanan Menuju Pernikahan Bahagia?</h2>
+                    <p class="lead mb-5">Download aplikasi Miluv sekarang dan mulai persiapan pernikahan Anda dengan langkah yang tepat.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="#" class="btn btn-light btn-lg px-4">
+                            <i class="fab fa-apple me-2"></i>App Store
+                        </a>
+                        <a href="#" class="btn btn-light btn-lg px-4">
+                            <i class="fab fa-google-play me-2"></i>Google Play
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h4 class="mb-4">Miluv</h4>
+                    <p>Platform kencan dan edukasi relasi untuk persiapan pernikahan yang matang dan bertanggung jawab.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-4">Perusahaan</h5>
+                    <div class="footer-links">
+                        <a href="#">Tentang Kami</a>
+                        <a href="#">Karir</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Kontak</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-4">Bantuan</h5>
+                    <div class="footer-links">
+                        <a href="#">FAQ</a>
+                        <a href="#">Kebijakan Privasi</a>
+                        <a href="#">Syarat & Ketentuan</a>
+                        <a href="#">Pusat Bantuan</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-4">Fitur</h5>
+                    <div class="footer-links">
+                        <a href="#">Tes Kepribadian</a>
+                        <a href="#">Love Language</a>
+                        <a href="#">Asesmen Pernikahan</a>
+                        <a href="#">Smart Matching</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2">
+                    <h5 class="mb-4">Download</h5>
+                    <div class="footer-links">
+                        <a href="#"><i class="fab fa-apple me-2"></i> iOS</a>
+                        <a href="#"><i class="fab fa-android me-2"></i> Android</a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="mt-5" style="border-color: rgba(255,255,255,0.1);">
+            
+            <div class="text-center pt-3">
+                <p class="mb-0">&copy; 2025 Miluv. All rights reserved. Made with <i class="fas fa-heart heart-icon"></i> in Indonesia</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
