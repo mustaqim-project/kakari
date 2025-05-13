@@ -9,7 +9,7 @@
 
                     <!-- Grid Layout -->
                     <div class="row g-4">
-                        @foreach ($recentNews->take(4) as $article)
+                        @foreach ($recentNews->take(6) as $article)
                             <div class="col-md-6 col-lg-6">
                                 <a href="{{ route('kajian-details', $article->slug) }}"
                                     class="text-decoration-none text-dark">
