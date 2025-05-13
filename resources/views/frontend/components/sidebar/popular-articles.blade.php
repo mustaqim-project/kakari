@@ -5,8 +5,7 @@
     </div>
     <div class="list-group list-group-flush">
         @foreach ($mostViewedPosts as $key => $post)
-            <a href="{{ route('news-details', $post->slug) }}"
-                class="list-group-item list-group-item-action">
+            <a href="{{ route('news-details', $post->slug) }}" class="list-group-item list-group-item-action">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
                         <span
@@ -17,6 +16,23 @@
                         <div class="text-muted small mt-1"><i class="fas fa-eye me-1"></i>
                             {{ number_format($post->views) }} views</div>
                     </div>
+                </div>
+            </a>
+        @endforeach
+    </div>
+</div>
+<!-- Popular Articles -->
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Tag Terpopuler</h5>
+    </div>
+    <div class="list-group list-group-flush">
+        @foreach ($mostCommonTags as $tag => $post)
+            <a href="{{ route('news', ['tag' => $tag->name]) }}" class="list-group-item list-group-item-action">
+                <div class="d-flex align-items-center">
+                    <a href="{{ route('news', ['tag' => $tag->name]) }}">
+                        #{{ $tag->name }} ({{ $tag->count }})
+                    </a>
                 </div>
             </a>
         @endforeach
