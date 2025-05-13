@@ -34,7 +34,7 @@
             <div class="col-md-8">
 
                 <div class="blog_page_search">
-                    <form action="{{ route('news') }}" method="GET">
+                    <form action="{{ route('kajian') }}" method="GET">
                         <div class="row">
                             <div class="col-lg-5">
                                 <input type="text" placeholder="Type here" value="{{ request()->search }}" name="search">
@@ -67,7 +67,7 @@
                             <!-- Post Article -->
                             <div class="article__entry">
                                 <div class="article__image">
-                                    <a href="{{ route('news-details', $post->slug) }}">
+                                    <a href="{{ route('kajian-details', $post->slug) }}">
                                         <img src="{{ asset($post->image) }}" alt="" class="img-fluid">
                                     </a>
                                 </div>
@@ -89,14 +89,14 @@
 
                                     </ul>
                                     <h5>
-                                        <a href="{{ route('news-details', $post->slug) }}">
+                                        <a href="{{ route('kajian-details', $post->slug) }}">
                                             {!! truncate($post->title) !!}
                                         </a>
                                     </h5>
                                     <p>
                                         {!! truncate($post->content, 100) !!}
                                     </p>
-                                    <a href="{{ route('news-details', $post->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('frontend.read more') }}</a>
+                                    <a href="{{ route('kajian-details', $post->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('frontend.read more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                                 <!-- Post Article -->
                                 <div class="card__post card__post-list">
                                     <div class="image-sm">
-                                        <a href="{{ route('news-details', $news->slug) }}">
+                                        <a href="{{ route('kajian-details', $news->slug) }}">
                                             <img src="{{ asset($news->image) }}" class="img-fluid" alt="">
                                         </a>
                                     </div>
@@ -152,7 +152,7 @@
                                             </div>
                                             <div class="card__post__title">
                                                 <h6>
-                                                    <a href="{{ route('news-details', $news->slug) }}">
+                                                    <a href="{{ route('kajian-details', $news->slug) }}">
                                                         {!! truncate($news->title) !!}
                                                     </a>
                                                 </h6>
@@ -168,7 +168,7 @@
                             <!-- Post Article -->
                             <div class="article__entry">
                                 <div class="article__image">
-                                    <a href="{{ route('news-details', $news->slug) }}">
+                                    <a href="{{ route('kajian-details', $news->slug) }}">
                                         <img src="{{ asset($news->image) }}" alt="" class="img-fluid">
                                     </a>
                                 </div>
@@ -190,14 +190,14 @@
 
                                     </ul>
                                     <h5>
-                                        <a href="{{ route('news-details', $news->slug) }}">
+                                        <a href="{{ route('kajian-details', $news->slug) }}">
                                             {!! truncate($news->title) !!}
                                         </a>
                                     </h5>
                                     <p>
                                         {!! truncate($news->content, 100) !!}
                                     </p>
-                                    <a href="{{ route('news-details', $news->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('frontend.read more') }}</a>
+                                    <a href="{{ route('kajian-details', $news->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('frontend.read more') }}</a>
                                 </div>
                             </div>
                             @endif

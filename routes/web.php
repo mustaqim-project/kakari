@@ -40,13 +40,13 @@ require __DIR__ . '/auth.php';
 Route::get('language', LanguageController::class)->name('language');
 
 /** News Routes */
-Route::get('news-deatils/{slug}', [HomeController::class, 'ShowNews'])->name('news-details');
-Route::get('news', [HomeController::class, 'news'])->name('news');
+Route::get('kajian-details/{slug}', [HomeController::class, 'ShowNews'])->name('kajian-details');
+Route::get('kajian', [HomeController::class, 'news'])->name('news');
 
 /** News Comment Routes */
-Route::post('news-comment', [HomeController::class, 'handleComment'])->name('news-comment');
-Route::post('news-comment-replay', [HomeController::class, 'handleReplay'])->name('news-comment-replay');
-Route::delete('news-comment-destroy', [HomeController::class, 'commentDestory'])->name('news-comment-destroy');
+Route::post('kajian-comment', [HomeController::class, 'handleComment'])->name('kajian-comment');
+Route::post('kajian-comment-replay', [HomeController::class, 'handleReplay'])->name('kajian-comment-replay');
+Route::delete('kajian-comment-destroy', [HomeController::class, 'commentDestory'])->name('kajian-comment-destroy');
 
 /** Newsletter Routes */
 Route::post('subscribe-newsletter', [HomeController::class, 'SubscribeNewsLetter'])->name('subscribe-newsletter');
@@ -114,7 +114,7 @@ Route::get('live', [HomeController::class, 'live'])->name('live');
 
 // Route News
 // Route::get('news', [HomeController::class, 'newsIndex'])->name('news.index');
-Route::get('news/{slug}', [HomeController::class, 'showNews'])->name('news.show');
+// Route::get('news/{slug}', [HomeController::class, 'showNews'])->name('news.show');
 
 // Route Search
 Route::get('search', [HomeController::class, 'search'])->name('search');

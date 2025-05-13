@@ -193,7 +193,7 @@ $categories = \App\Models\Category::where(['status' => 1, 'language' => getLanga
                     <div class="top-search navigation-shadow">
                         <div class="container">
                             <div class="input-group">
-                                <form action="{{ route('news') }}" method="GET">
+                                <form action="{{ route('kajian') }}" method="GET">
                                     <div class="row no-gutters mt-3">
                                         <div class="col">
                                             <input class="form-control border-secondary border-right-0 rounded-0" type="search" value="" placeholder="Search " id="example-search-input4" name="search">
@@ -221,7 +221,7 @@ $categories = \App\Models\Category::where(['status' => 1, 'language' => getLanga
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="widget__form-search-bar">
-                        <form action="{{ route('news') }}" method="GET">
+                        <form action="{{ route('kajian') }}" method="GET">
                             <div class="row no-gutters">
                                 <div class="col">
                                     <input class="form-control border-secondary border-right-0 rounded-0" placeholder="Search" type="search" name="search">

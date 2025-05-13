@@ -179,7 +179,7 @@
                 <div class="col-md-8">
                     <!-- Search Form -->
                     <div class="blog_page_search">
-                        <form action="{{ route('news') }}" method="GET">
+                        <form action="{{ route('kajian') }}" method="GET">
                             <div class="row">
                                 <div class="col-lg-5">
                                     <input type="text" placeholder="Type here" value="{{ request()->search }}"
@@ -213,7 +213,7 @@
                                     <!-- Post Article -->
                                     <div class="article__entry">
                                         <div class="article__image">
-                                            <a href="{{ route('news-details', $post->slug) }}">
+                                            <a href="{{ route('kajian-details', $post->slug) }}">
                                                 <img src="{{ asset($post->image) }}" alt=""
                                                     class="img-fluid article-image">
                                             </a>
@@ -235,14 +235,14 @@
                                                 </li>
                                             </ul>
                                             <h5 class="article-title">
-                                                <a href="{{ route('news-details', $post->slug) }}">
+                                                <a href="{{ route('kajian-details', $post->slug) }}">
                                                     {!! truncate($post->title) !!}
                                                 </a>
                                             </h5>
                                             <p class="article-excerpt">
                                                 {!! truncate($post->content, 100) !!}
                                             </p>
-                                            <a href="{{ route('news-details', $post->slug) }}"
+                                            <a href="{{ route('kajian-details', $post->slug) }}"
                                                 class="btn btn-outline-primary mb-4 text-capitalize read-more">
                                                 {{ __('frontend.read more') }}</a>
                                         </div>

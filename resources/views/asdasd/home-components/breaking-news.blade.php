@@ -8,7 +8,7 @@
                         <!-- Post Article -->
                         <div class="card__post card__post-list">
                             <div class="image-sm">
-                                <a href="{{ route('news-details', $news->slug) }}">
+                                <a href="{{ route('kajian-details', $news->slug) }}">
                                     <img data-src="{{ asset($news->image) }}" class="img-fluid lazy" loading="lazy" alt="">
                                 </a>
                             </div>
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="card__post__title">
                                         <h6>
-                                            <a href="{{ route('news-details', $news->slug) }}">
+                                            <a href="{{ route('kajian-details', $news->slug) }}">
                                                 {!! truncate($news->title) !!}
                                             </a>
                                         </h6>

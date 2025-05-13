@@ -27,7 +27,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('news') }}">Artikel</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('kajian') }}">Artikel</a></li>
                     </ol>
                 </nav>
             </div>
@@ -93,13 +93,13 @@
                         <!-- Navigation Between Materi -->
                         <div class="d-flex justify-content-between mt-4">
                             @if ($previousPost)
-                                <a href="{{ route('news-details', $previousPost->slug) }}" class="btn btn-primary">
+                                <a href="{{ route('kajian-details', $previousPost->slug) }}" class="btn btn-primary">
                                     <i class="fas fa-arrow-left me-2"></i>{!! truncate($previousPost->title) !!}
                                 </a>
                             @endif
 
                             @if ($nextPost)
-                                <a href="{{ route('news-details', $nextPost->slug) }}" class="btn btn-primary">
+                                <a href="{{ route('kajian-details', $nextPost->slug) }}" class="btn btn-primary">
                                     {!! truncate($nextPost->title) !!}<i class="fas fa-arrow-right ms-2"></i>
                                 </a>
                             @endif
@@ -115,7 +115,7 @@
 
                             <!-- Comment Form -->
                             <div class="mb-4">
-                                <form action="{{ route('news-comment') }}" method="POST">
+                                <form action="{{ route('kajian-comment') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
                                         <textarea name="comment" class="form-control" rows="3" placeholder="Tulis pertanyaan atau komentar Anda..."
@@ -198,7 +198,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{{ route('news-comment-reply') }}" method="POST">
+                                                    <form action="{{ route('kajian-comment-reply') }}" method="POST">
                                                         @csrf
                                                         <textarea name="reply" class="form-control" rows="4" placeholder="Tulis balasan..." required></textarea>
                                                         <input type="hidden" name="parent_id"
@@ -217,7 +217,7 @@
 
                             <!-- View All Comments -->
                             <div class="text-center mt-3">
-                                <a href="{{ route('news-comments', $news->id) }}"
+                                <a href="{{ route('kajian-comments', $news->id) }}"
                                     class="btn btn-outline-primary btn-sm">Lihat Semua Komentar</a>
                             </div>
                         </div>
@@ -249,7 +249,7 @@
                                                 <h5>{!! truncate($post->title) !!}</h5>
                                                 <p class="card-text">
                                                     {{ \Illuminate\Support\Str::limit($post->excerpt, 100) }}</p>
-                                                <a href="{{ route('news-details', $post->slug) }}"
+                                                <a href="{{ route('kajian-details', $post->slug) }}"
                                                     class="btn btn-outline-primary">Read More</a>
                                             </div>
                                         </div>
@@ -313,7 +313,7 @@
 
                     $.ajax({
                         method: 'DELETE',
-                        url: "{{ route('news-comment-destroy') }}",
+                        url: "{{ route('kajian-comment-destroy') }}",
                         data: {
                             id: id
                         },

@@ -300,7 +300,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('news-comment-replay') }}" method="POST">
+                                            <form action="{{ route('kajian-comment-replay') }}" method="POST">
                                                 @csrf
                                                 <textarea name="replay" cols="30" rows="7" placeholder="Type. . ."></textarea>
                                                 <input type="hidden" name="news_id" value="{{ $news->id }}">
@@ -321,7 +321,7 @@
                     <div class="comment-respond">
                         <h3 class="comment-reply-title">{{ __('frontend.Leave a Reply') }}</h3>
 
-                        <form action="{{ route('news-comment') }}" method="POST" class="comment-form">
+                        <form action="{{ route('kajian-comment') }}" method="POST" class="comment-form">
                             @csrf
                             <p class="comment-notes">
 
@@ -360,7 +360,7 @@
                     <div class="col-md-6">
                         <div class="single_navigation-prev">
                             @if ($previousPost)
-                            <a href="{{ route('news-details', $previousPost->slug) }}">
+                            <a href="{{ route('kajian-details', $previousPost->slug) }}">
                                 <span>{{ __('frontend.previous post') }}</span>
                                 {!! truncate($previousPost->title) !!}
                             </a>
@@ -370,7 +370,7 @@
                     <div class="col-md-6">
                         <div class="single_navigation-next text-left text-md-right">
                             @if ($nextPost)
-                            <a href="{{ route('news-details', $nextPost->slug) }}">
+                            <a href="{{ route('kajian-details', $nextPost->slug) }}">
                                 <span>{{ __('frontend.next post') }}</span>
                                 {!! truncate($nextPost->title) !!}
                             </a>
@@ -403,7 +403,7 @@
                             <!-- Post Article -->
                             <div class="article__entry">
                                 <div class="article__image">
-                                    <a href="{{ route('news-details', $post->slug) }}">
+                                    <a href="{{ route('kajian-details', $post->slug) }}">
                                         <img src="{{ asset($post->image) }}" alt="" class="img-fluid">
                                     </a>
                                 </div>
@@ -422,7 +422,7 @@
 
                                     </ul>
                                     <h5>
-                                        <a href="{{ route('news-details', $post->slug) }}">
+                                        <a href="{{ route('kajian-details', $post->slug) }}">
                                             {!! truncate($post->title) !!}
                                         </a>
                                     </h5>
@@ -448,7 +448,7 @@
                                 <!-- Post Article -->
                                 <div class="card__post card__post-list">
                                     <div class="image-sm">
-                                        <a href="{{ route('news-details', $news->slug) }}">
+                                        <a href="{{ route('kajian-details', $news->slug) }}">
                                             <img src="{{ asset($news->image) }}" class="img-fluid" alt="">
                                         </a>
                                     </div>
@@ -475,7 +475,7 @@
                                             </div>
                                             <div class="card__post__title">
                                                 <h6>
-                                                    <a href="{{ route('news-details', $news->slug) }}">
+                                                    <a href="{{ route('kajian-details', $news->slug) }}">
                                                         {!! truncate($news->title) !!}
                                                     </a>
                                                 </h6>
@@ -491,7 +491,7 @@
                             <!-- Post Article -->
                             <div class="article__entry">
                                 <div class="article__image">
-                                    <a href="{{ route('news-details', $news->slug) }}">
+                                    <a href="{{ route('kajian-details', $news->slug) }}">
                                         <img  src="{{ asset($news->image) }}" alt="" class="img-fluid">
                                     </a>
                                 </div>
@@ -513,14 +513,14 @@
 
                                     </ul>
                                     <h5>
-                                        <a href="{{ route('news-details', $news->slug) }}">
+                                        <a href="{{ route('kajian-details', $news->slug) }}">
                                             {!! truncate($news->title) !!}
                                         </a>
                                     </h5>
                                     <p>
                                        {!! truncate($news->content, 160) !!}
                                     </p>
-                                    <a href="{{ route('news-details', $news->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('Read On') }}</a>
+                                    <a href="{{ route('kajian-details', $news->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize"> {{ __('Read On') }}</a>
                                 </div>
 
                             </div>
@@ -648,7 +648,7 @@
 
                         $.ajax({
                             method: 'DELETE',
-                            url: "{{ route('news-comment-destroy') }}",
+                            url: "{{ route('kajian-comment-destroy') }}",
                             data:{id:id},
                             success: function(data) {
                                 if (data.status === 'success') {

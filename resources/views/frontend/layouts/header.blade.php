@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto" style="font-size: 0.8em;">
                     <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Tentang Kami</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('news') }}">Kajian</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('kajian') }}">Kajian</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('multimedia') }}">Multimedia</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('pendidikan') }}">Pendidikan</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('tokoh') }}">Tokoh & Jaringan</a></li>

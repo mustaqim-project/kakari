@@ -235,7 +235,7 @@ class HomeController extends Controller
             $news = $this->insertInternalLinks($news, $relatedNewsByTag);
         }
 
-        return view('frontend.news-details', compact(
+        return view('frontend.kajian-details', compact(
             'news',
             'mostViewedPosts',
             'latestEkoran',

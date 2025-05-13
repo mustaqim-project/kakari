@@ -325,7 +325,7 @@ class HomeController extends Controller
             $news = $this->insertInternalLinks($news, $relatedNewsByTag);
         }
 
-        return view('frontend.news-details', compact(
+        return view('frontend.kajian-details', compact(
             'news',
             'recentNews',
             'mostCommonTags',
@@ -436,7 +436,7 @@ class HomeController extends Controller
 
     private function formatRelatedLink($relatedNews)
     {
-        $link = url('/news-details/' . $relatedNews->slug);
+        $link = url('/kajian-details/' . $relatedNews->slug);
         $title = $relatedNews->title;
         return "
             <div style='display: flex; align-items: center; margin-top: 20px;'>

@@ -11,7 +11,7 @@
                     <div class="row g-4">
                         @foreach ($recentNews->take(4) as $article)
                             <div class="col-md-6 col-lg-6">
-                                <a href="{{ route('news-details', $article->slug) }}"
+                                <a href="{{ route('kajian-details', $article->slug) }}"
                                     class="text-decoration-none text-dark">
                                     <div class="card h-100">
                                         <img src="{{ asset($article->image) }}" class="card-img-top"
@@ -42,7 +42,7 @@
 
                     <!-- View More Button -->
                     <div class="text-center mt-4">
-                        <a href="{{ route('news') }}" class="btn btn-outline-primary">Lihat Lebih Banyak
+                        <a href="{{ route('kajian') }}" class="btn btn-outline-primary">Lihat Lebih Banyak
                             Artikel</a>
                     </div>
                 </section>

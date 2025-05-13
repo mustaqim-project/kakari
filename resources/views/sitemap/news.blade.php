@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     @foreach ($news as $newsItem)
         <url>
-            <loc><![CDATA[ {{ url('/news-details/'.$newsItem->slug) }} ]]></loc>
+            <loc><![CDATA[ {{ url('/kajian-details/'.$newsItem->slug) }} ]]></loc>
             <news:news>
                 <news:publication>
                     <news:name><![CDATA[ ic-syekhburhanuddin ]]></news:name>

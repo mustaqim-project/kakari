@@ -1,5 +1,5 @@
 <div class="col-md-6 col-lg-6">
-    <a href="{{ route('news-details', $article->slug) }}" class="text-decoration-none text-dark">
+    <a href="{{ route('kajian-details', $article->slug) }}" class="text-decoration-none text-dark">
         <div class="card h-100">
             <img src="{{ asset($article->image) }}" class="card-img-top"
                 alt="{{ $article->title ?? 'Gambar artikel' }}"

@@ -5,7 +5,7 @@
     </div>
     <div class="list-group list-group-flush">
         @foreach ($mostViewedPosts as $key => $post)
-            <a href="{{ route('news-details', $post->slug) }}" class="list-group-item list-group-item-action">
+            <a href="{{ route('kajian-details', $post->slug) }}" class="list-group-item list-group-item-action">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
                         <span

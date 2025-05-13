@@ -13,7 +13,7 @@
                             <!-- Post Article -->
                             <div class="card__post ">
                                 <div class="card__post__body card__post__transition">
-                                    <a href="{{ route('news-details', $news->slug) }}">
+                                    <a href="{{ route('kajian-details', $news->slug) }}">
                                         <img data-src="{{ asset($news->image) }}" class="img-fluid lazy" loading="lazy" alt="">
                                     </a>
                                     <div class="card__post__content bg__post-cover">
@@ -22,7 +22,7 @@
                                         </div>
                                         <div class="card__post__title">
                                             <h5>
-                                                <a href="{{ route('news-details', $news->slug) }}">
+                                                <a href="{{ route('kajian-details', $news->slug) }}">
                                                     {!! truncate($news->title) !!}
                                                 </a>
                                             </h5>
@@ -59,7 +59,7 @@
                                     <!-- Post Article -->
                                     <div class="card__post card__post-list">
                                         <div class="image-sm">
-                                            <a href="{{ route('news-details', $news->slug) }}">
+                                            <a href="{{ route('kajian-details', $news->slug) }}">
                                                 <img data-src="{{ asset($news->image) }}" class="img-fluid lazy" loading="lazy" alt="">
                                             </a>
                                         </div>
@@ -85,7 +85,7 @@
                                                 </div>
                                                 <div class="card__post__title">
                                                     <h6>
-                                                        <a href="{{ route('news-details', $news->slug) }}">
+                                                        <a href="{{ route('kajian-details', $news->slug) }}">
                                                             {!! truncate($news->title) !!}
                                                         </a>
                                                     </h6>
@@ -106,7 +106,7 @@
                                     <!-- Post Article -->
                                     <div class="card__post card__post-list">
                                         <div class="image-sm">
-                                            <a href="{{ route('news-details', $news->slug) }}">
+                                            <a href="{{ route('kajian-details', $news->slug) }}">
                                                 <img data-src="{{ asset($news->image) }}" class="img-fluid lazy" loading="lazy" alt="">
                                             </a>
                                         </div>
@@ -132,7 +132,7 @@
                                                 </div>
                                                 <div class="card__post__title">
                                                     <h6>
-                                                        <a href="{{ route('news-details', $news->slug) }}">
+                                                        <a href="{{ route('kajian-details', $news->slug) }}">
                                                             {!! truncate($news->title) !!}
                                                         </a>
                                                     </h6>
@@ -168,7 +168,7 @@
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <h5>
-                                                <a href="{{ route('news-details', $popularNews->slug) }}">
+                                                <a href="{{ route('kajian-details', $popularNews->slug) }}">
                                                     {!! truncate($popularNews->title) !!}
 
                                                 </a>
@@ -201,7 +201,7 @@
                         <!-- Post Article -->
                         <div class="article__entry">
                             <div class="article__image">
-                                <a href="{{ route('news-details', $sectionOneNews->slug) }}">
+                                <a href="{{ route('kajian-details', $sectionOneNews->slug) }}">
                                     <img data-src="{{ asset($sectionOneNews->image) }}" alt="" class="img-fluid lazy" loading="lazy">
                                 </a>
                             </div>
@@ -220,7 +220,7 @@
 
                                 </ul>
                                 <h5>
-                                    <a href="{{ route('news-details', $sectionOneNews->slug) }}">
+                                    <a href="{{ route('kajian-details', $sectionOneNews->slug) }}">
                                         {!! truncate($sectionOneNews->title, 40) !!}
                                     </a>
                                 </h5>
@@ -254,7 +254,7 @@
                         <!-- Post Article -->
                         <div class="article__entry">
                             <div class="article__image">
-                                <a href="{{ route('news-details', $sectionTwoNews->slug) }}">
+                                <a href="{{ route('kajian-details', $sectionTwoNews->slug) }}">
                                     <img data-src="{{ asset($sectionTwoNews->image) }}" alt="" class="img-fluid lazy" loading="lazy">
                                 </a>
                             </div>
@@ -273,7 +273,7 @@
 
                                 </ul>
                                 <h5>
-                                    <a href="{{ route('news-details', $sectionTwoNews->slug) }}">
+                                    <a href="{{ route('kajian-details', $sectionTwoNews->slug) }}">
                                         {!! truncate($sectionTwoNews->title, 40) !!}
                                     </a>
                                 </h5>
@@ -306,7 +306,7 @@
                                     <!-- Post Article -->
                                     <div class="article__entry">
                                         <div class="article__image">
-                                            <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
+                                            <a href="{{ route('kajian-details', $sectionThreeNews->slug) }}">
                                                 <img data-src="{{ asset($sectionThreeNews->image) }}" alt="" class="img-fluid lazy" loading="lazy">
                                             </a>
                                         </div>
@@ -326,7 +326,7 @@
 
                                             </ul>
                                             <h5>
-                                                <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
+                                                <a href="{{ route('kajian-details', $sectionThreeNews->slug) }}">
                                                     {!! truncate($sectionThreeNews->title) !!}
                                                 </a>
                                             </h5>
@@ -345,7 +345,7 @@
                                     <!-- Post Article -->
                                     <div class="article__entry">
                                         <div class="article__image">
-                                            <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
+                                            <a href="{{ route('kajian-details', $sectionThreeNews->slug) }}">
                                                 <img data-src="{{ asset($sectionThreeNews->image) }}" alt="" class="img-fluid lazy" loading="lazy">
                                             </a>
                                         </div>
@@ -365,7 +365,7 @@
 
                                             </ul>
                                             <h5>
-                                                <a href="{{ route('news-details', $sectionThreeNews->slug) }}">
+                                                <a href="{{ route('kajian-details', $sectionThreeNews->slug) }}">
                                                     {!! truncate($sectionThreeNews->title) !!}
                                                 </a>
                                             </h5>
@@ -401,7 +401,7 @@
                                 <div class="row ">
                                     <div class="col-md-5">
                                         <div class="card__post__transition">
-                                            <a href="{{ route('news-details', $sectionFourNews->slug) }}">
+                                            <a href="{{ route('kajian-details', $sectionFourNews->slug) }}">
                                                 <img data-src="{{ asset($sectionFourNews->image) }}" class="img-fluid lazy w-100" alt="">
                                             </a>
                                         </div>
@@ -429,7 +429,7 @@
                                                 </div>
                                                 <div class="card__post__title">
                                                     <h5>
-                                                        <a href="{{ route('news-details', $sectionFourNews->slug) }}">
+                                                        <a href="{{ route('kajian-details', $sectionFourNews->slug) }}">
                                                             {!! truncate($sectionFourNews->title) !!}
                                                         </a>
                                                     </h5>
@@ -461,7 +461,7 @@
                                 @if ($loop->index === 0)
                                 <div class="article__entry">
                                     <div class="article__image">
-                                        <a href="{{ route('news-details', $mostViewedNews->slug) }}">
+                                        <a href="{{ route('kajian-details', $mostViewedNews->slug) }}">
                                             <img data-src="{{ asset($mostViewedNews->image) }}" alt="" class="img-fluid lazy" loading="lazy">
                                         </a>
                                     </div>
@@ -483,14 +483,14 @@
 
                                         </ul>
                                         <h5>
-                                            <a href="{{ route('news-details', $mostViewedNews->slug) }}">
+                                            <a href="{{ route('kajian-details', $mostViewedNews->slug) }}">
                                                 {{ truncate($mostViewedNews->title) }}
                                             </a>
                                         </h5>
                                         <p>
                                             {!! truncate($mostViewedNews->content,100) !!}
                                         </p>
-                                        <a href="{{ route('news-details', $mostViewedNews->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize"> {{__('Read On')}}</a>
+                                        <a href="{{ route('kajian-details', $mostViewedNews->slug) }}" class="btn btn-outline-primary mb-4 text-capitalize"> {{__('Read On')}}</a>
                                     </div>
                                 </div>
                                 @endif
@@ -501,7 +501,7 @@
                                         <!-- Post Article -->
                                         <div class="card__post card__post-list">
                                             <div class="image-sm">
-                                                <a href="{{ route('news-details', $mostViewedNews->slug) }}">
+                                                <a href="{{ route('kajian-details', $mostViewedNews->slug) }}">
                                                     <img data-src="{{ asset($mostViewedNews->image) }}" class="img-fluid lazy" loading="lazy" alt="">
                                                 </a>
                                             </div>
@@ -525,7 +525,7 @@
                                                     </div>
                                                     <div class="card__post__title">
                                                         <h6>
-                                                            <a href="{{ route('news-details', $mostViewedNews->slug) }}">
+                                                            <a href="{{ route('kajian-details', $mostViewedNews->slug) }}">
                                                                 {!! truncate($mostViewedNews->title) !!}
                                                             </a>
                                                         </h6>
