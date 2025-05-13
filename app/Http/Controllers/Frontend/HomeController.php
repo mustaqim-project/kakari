@@ -20,7 +20,7 @@ use App\Models\Download;
 use App\Models\Donasi;
 use App\Models\Ekoran;
 use App\Models\Pendidikan;
-use App\Models\Penguurus;
+use App\Models\Pengurus;
 use App\Models\Playlist;
 use App\Models\Video;
 use App\Models\PodcastPlaylist;
@@ -576,7 +576,8 @@ class HomeController extends Controller
     public function about()
     {
         $about = About::where('language', getLangauge())->first();
-        return view('frontend.about', compact('about'));
+        $pengurus = Pengurus::all();
+        return view('frontend.about', compact('about','pengurus'));
     }
 
     public function contact()
