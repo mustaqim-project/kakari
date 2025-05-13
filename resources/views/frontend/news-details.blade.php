@@ -61,140 +61,110 @@
                 <ul class="breadcrumbs bg-light mb-4">
                     <li class="breadcrumbs__item">
                         <a href="{{ url('/') }}" class="breadcrumbs__url">
-                            <i class="fa fa-home"></i> {{ __('frontend.Home') }}</a>
+                            <i class="fa fa-home"></i> {{ __('frontend.Home') }}
+                        </a>
                     </li>
                     <li class="breadcrumbs__item">
-                        <a href="javascript:;" class="breadcrumbs__url">{{ __('frontend.News') }}</a>
+                        <a href="{{ route('news') }}" class="breadcrumbs__url">{{ __('frontend.News') }}</a>
                     </li>
+
+
                 </ul>
                 <!-- end breadcrumb -->
             </div>
             <div class="col-md-8">
                 <!-- content article detail -->
-                <!-- Article Detail -->
-                <div class="wrap__article-detail">
-                    <div class="wrap__article-detail-title">
-                        <h1>
-                            {!! $news->title !!}
-                        </h1>
-
+                <!-- Article Header -->
+                <div class="wrap__article-detail-title">
+                    <h1 class="article-title">
+                        {!! $news->title !!}
+                    </h1>
+                    <div class="article-meta">
+                        <span class="article-author">
+                            <i class="fa fa-user"></i> {{ $news->auther->name }}
+                        </span>
+                        <span class="article-date">
+                            <i class="fa fa-calendar"></i> {{ date('M d, Y', strtotime($news->created_at)) }}
+                        </span>
+                        <span class="article-category">
+                            <i class="fa fa-folder"></i>
+                            <a href="{{ route('category', $news->category->slug) }}">{{ $news->category->name }}</a>
+                        </span>
+                        <span class="article-views">
+                            <i class="fa fa-eye"></i> {{ convertToKFormat($news->views) }} {{ __('frontend.views') }}
+                        </span>
                     </div>
-                    <hr>
-                    <div class="wrap__article-detail-info">
-                        <ul class="list-inline d-flex flex-wrap justify-content-start">
-                            <li class="list-inline-item">
-                                {{ __('frontend.By') }}
-                                <a href="#">
-                                    {{ $news->auther->name }}
+                </div>
+
+                <!-- Article Image -->
+                <div class="wrap__article-detail-image mt-4">
+                    <figure class="article-image">
+                        <img src="{{ asset($news->image) }}" alt="{{ $title }}" class="img-fluid">
+                        <figcaption class="image-caption">{{ $news->image_caption ?? $title }}</figcaption>
+                    </figure>
+                </div>
+
+                <!-- Article Content -->
+                <div class="wrap__article-detail-content">
+                    <div class="article-share">
+                        <span class="share-label">{{ __('frontend.share on:') }}</span>
+                        <ul class="share-buttons">
+                            <li>
+                                <a class="btn btn-social facebook"
+                                    href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"
+                                    target="_blank">
+                                    <i class="fa fa-facebook-f"></i>
                                 </a>
                             </li>
-                            <li class="list-inline-item">
-                                <span class="text-dark text-capitalize ml-1">
-
-                                    {{ date('M D, Y', strtotime($news->created_at)) }}
-                                </span>
-                            </li>
-                            <li class="list-inline-item">
-                                <span class="text-dark text-capitalize">
-                                    {{ __('frontend.in') }}
-                                </span>
-                                <a href="#">
-                                    {{ $news->category->name }}
+                            <li>
+                                <a class="btn btn-social twitter"
+                                    href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ url()->current() }}"
+                                    target="_blank">
+                                    <i class="fa fa-twitter"></i>
                                 </a>
-
-
+                            </li>
+                            <li>
+                                <a class="btn btn-social whatsapp"
+                                    href="https://wa.me/?text={{ $news->title }}%20{{ url()->current() }}"
+                                    target="_blank">
+                                    <i class="fa fa-whatsapp"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn btn-social telegram"
+                                    href="https://t.me/share/url?url={{ url()->current() }}&text={{ $news->title }}"
+                                    target="_blank">
+                                    <i class="fa fa-telegram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn btn-social linkedin"
+                                    href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}&title={{ $news->title }}"
+                                    target="_blank">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="wrap__article-detail-image mt-4">
-                        <figure>
-                            <img src="{{ asset($news->image) }}" alt="{{ $title }}" class="img-fluid">
-                            <figcaption>{{ $title }}</figcaption>
-                        </figure>
+                    <div class="article-body">
+                        {!! $news->content !!}
                     </div>
-                    <div class="wrap__article-detail-content">
-                        <div class="total-views">
-                            <div class="total-views-read">
-                                {{ convertToKFormat($news->views) }}
-                                <span>
-                                    {{ __('frontend.views') }}
-                                </span>
-                            </div>
-
-                            <ul class="list-inline">
-                                <span class="share">{{ __('frontend.share on:') }}</span>
-                                <li class="list-inline-item">
-                                    <a class="btn btn-social-o facebook"
-                                        href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"
-                                        target="_blank">
-                                        <i class="fa fa-facebook-f"></i>
-                                        <!--<span>{{ __('frontend.facebook') }}</span>-->
-                                    </a>
-
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="btn btn-social-o twitter"
-                                        href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ url()->current() }}"
-                                        target="_blank">
-                                        <i class="fa fa-twitter"></i>
-                                        <!--<span>{{ __('frontend.twitter') }}</span>-->
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="btn btn-social-o whatsapp"
-                                        href="https://wa.me/?text={{ $news->title }}%20{{ url()->current() }}"
-                                        target="_blank">
-                                        <i class="fa fa-whatsapp"></i>
-                                        <!--<span>{{ __('frontend.whatsapp') }}</span>-->
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="btn btn-social-o telegram"
-                                        href="https://t.me/share/url?url={{ url()->current() }}&text={{ $news->title }}"
-                                        target="_blank">
-                                        <i class="fa fa-telegram"></i>
-                                        <!--<span>{{ __('frontend.telegram') }}</span>-->
-                                    </a>
-                                </li>
-
-                                <li class="list-inline-item">
-                                    <a class="btn btn-linkedin-o linkedin"
-                                        href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}&title={{ $news->title }}"
-                                        target="_blank">
-                                        <i class="fa fa-linkedin"></i>
-                                        <!--<span>{{ __('frontend.linkedin') }}</span>-->
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <p class="has-drop-cap-fluid">
-                            {!! $news->content !!}
-                        </p>
-                    </div>
-
-
                 </div>
-                <!-- end content article detail -->
 
-                <!-- tags -->
-                <!-- News Tags -->
+                <!-- Article Tags -->
                 <div class="blog-tags">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <i class="fa fa-tags"></i>
-                        </li>
+                    <h4 class="tags-title"><i class="fa fa-tags"></i> {{ __('frontend.Tags') }}:</h4>
+                    <ul class="tags-list">
                         @foreach ($news->tags as $tag)
-                            <li class="list-inline-item">
-                                <a href="{{ route('news', ['tag' => $tag->name]) }}">
+                            <li>
+                                <a href="{{ route('news', ['tag' => $tag->name]) }}" class="tag-item">
                                     #{{ $tag->name }}
                                 </a>
                             </li>
                         @endforeach
                     </ul>
                 </div>
-
                 <!-- end tags-->
 
                 <!-- authors-->
