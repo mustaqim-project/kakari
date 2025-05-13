@@ -495,12 +495,12 @@ h6 {
 
 @media (max-width: 992px) {
     .logo {
-        max-height: 1.5em;
+        max-height: 1em;
     }
 }
 
 @media (max-width: 576px) {
     .logo {
-        max-height: 1em;
+        max-height: 0.5em;
     }
 }
