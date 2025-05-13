@@ -577,7 +577,7 @@ class HomeController extends Controller
     {
         $about = About::where('language', getLangauge())->first();
         $penguruses  = Pengurus::all();
-        return view('frontend.about', compact('about','penguruses '));
+        return view('frontend.about', compact('about','penguruses'));
     }
 
     public function contact()
