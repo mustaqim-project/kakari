@@ -61,18 +61,10 @@
                 <ul class="breadcrumbs bg-light mb-4">
                     <li class="breadcrumbs__item">
                         <a href="{{ url('/') }}" class="breadcrumbs__url">
-                            <i class="fa fa-home"></i> {{ __('frontend.Home') }}
-                        </a>
+                            <i class="fa fa-home"></i> {{ __('frontend.Home') }}</a>
                     </li>
                     <li class="breadcrumbs__item">
-                        <a href="{{ route('news') }}" class="breadcrumbs__url">{{ __('frontend.News') }}</a>
-                    </li>
-                    <li class="breadcrumbs__item">
-                        <a href="{{ route('category', $news->category->slug) }}"
-                            class="breadcrumbs__url">{{ $news->category->name }}</a>
-                    </li>
-                    <li class="breadcrumbs__item breadcrumbs__item--current">
-                        <span class="breadcrumbs__url">{{ truncate($news->title, 20) }}</span>
+                        <a href="javascript:;" class="breadcrumbs__url">{{ __('frontend.News') }}</a>
                     </li>
                 </ul>
                 <!-- end breadcrumb -->
