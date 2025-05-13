@@ -78,96 +78,127 @@
                     </div>
 
                     <!-- Comments Section -->
-                    <div class="card-footer bg-light">
-                        <h5 class="mb-3"><i class="fas fa-comments me-2"></i>Diskusi (24)</h5>
+                    @auth
+                        <div class="card-footer bg-light">
+                            <h5 class="mb-3"><i class="fas fa-comments me-2"></i>Comment
+                                ({{ $news->comments()->count() }})</h5>
 
-                        <!-- Comment Form -->
-                        <div class="mb-4">
-                            <form>
-                                <div class="mb-3">
-                                    <textarea class="form-control" rows="3" placeholder="Tulis pertanyaan atau komentar Anda..."></textarea>
-                                </div>
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary">Kirim Komentar</button>
-                                </div>
-                            </form>
-                        </div>
+                            <!-- Comment Form -->
+                            <div class="mb-4">
+                                <form action="{{ route('news-comment') }}" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <textarea name="comment" class="form-control" rows="3" placeholder="Tulis pertanyaan atau komentar Anda..."
+                                            required></textarea>
+                                    </div>
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary">Kirim Komentar</button>
+                                    </div>
+                                </form>
+                            </div>
 
-                        <!-- Comments List -->
-                        <div class="list-group list-group-flush">
-                            <!-- Comment 1 -->
-                            <div class="list-group-item border-0 px-0 py-3">
-                                <div class="d-flex">
-                                    <img src="https://via.placeholder.com/50" class="rounded-circle me-3"
-                                        alt="User">
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center mb-1">
-                                            <h6 class="mb-0">Abdul Malik</h6>
-                                            <small class="text-muted">2 hari lalu</small>
-                                        </div>
-                                        <p class="mb-2">Ustadz, apakah ada perbedaan pendapat ulama tentang keutamaan
-                                            surah Yasin ini?</p>
-                                        <div>
-                                            <a href="#" class="text-primary me-3"><i
-                                                    class="fas fa-reply me-1"></i>Balas</a>
-                                            <a href="#" class="text-primary"><i
-                                                    class="fas fa-thumbs-up me-1"></i>Suka (5)</a>
-                                        </div>
-
-                                        <!-- Reply -->
-                                        <div class="mt-3 ps-3 border-start border-2 border-primary">
-                                            <div class="d-flex">
-                                                <img src="https://via.placeholder.com/40" class="rounded-circle me-2"
-                                                    alt="Ustadz">
+                            <!-- Comments List -->
+                            <div class="list-group list-group-flush">
+                                @foreach ($news->comments()->whereNull('parent_id')->get() as $comment)
+                                    <div class="list-group-item border-0 px-0 py-3">
+                                        <div class="d-flex">
+                                            <img src="{{ asset('frontend/assets/images/avatar.png') }}"
+                                                class="rounded-circle me-3" alt="User">
+                                            <div>
+                                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                                    <h6 class="mb-0">{{ $comment->user->name }}</h6>
+                                                    <small
+                                                        class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                                                </div>
+                                                <p class="mb-2">{{ $comment->comment }}</p>
                                                 <div>
-                                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                                        <h6 class="mb-0">Ust. Ahmad Al-Fathoni</h6>
-                                                        <small class="text-muted">1 hari lalu</small>
+                                                    <a href="#" class="text-primary me-3" data-toggle="modal"
+                                                        data-target="#replyModal-{{ $comment->id }}"><i
+                                                            class="fas fa-reply me-1"></i>Balas</a>
+                                                    <a href="#" class="text-primary"><i
+                                                            class="fas fa-thumbs-up me-1"></i>Suka
+                                                        ({{ $comment->likes }})</a>
+                                                </div>
+
+                                                <!-- Replies -->
+                                                @if ($comment->reply()->count() > 0)
+                                                    <div class="mt-3 ps-3 border-start border-2 border-primary">
+                                                        @foreach ($comment->reply as $reply)
+                                                            <div class="d-flex">
+                                                                <img src="{{ asset('frontend/assets/images/avatar.png') }}"
+                                                                    class="rounded-circle me-2" alt="User">
+                                                                <div>
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-center mb-1">
+                                                                        <h6 class="mb-0">{{ $reply->user->name }}</h6>
+                                                                        <small
+                                                                            class="text-muted">{{ $reply->created_at->diffForHumans() }}</small>
+                                                                    </div>
+                                                                    <p class="mb-2">{{ $reply->comment }}</p>
+                                                                    <div>
+                                                                        <a href="#" class="text-primary me-3"
+                                                                            data-toggle="modal"
+                                                                            data-target="#replyModal-{{ $reply->id }}"><i
+                                                                                class="fas fa-reply me-1"></i>Balas</a>
+                                                                        <a href="#" class="text-primary"><i
+                                                                                class="fas fa-thumbs-up me-1"></i>Suka
+                                                                            ({{ $reply->likes }})</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
-                                                    <p class="mb-2">Ada beberapa perbedaan pendapat di kalangan ulama
-                                                        mengenai derajat hadits tentang keutamaan Yasin. Namun mayoritas
-                                                        ulama menerima bahwa surah ini memiliki keutamaan khusus.</p>
-                                                    <div>
-                                                        <a href="#" class="text-primary me-3"><i
-                                                                class="fas fa-reply me-1"></i>Balas</a>
-                                                        <a href="#" class="text-primary"><i
-                                                                class="fas fa-thumbs-up me-1"></i>Suka (12)</a>
-                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal for Reply -->
+                                    <div class="modal fade" id="replyModal-{{ $comment->id }}" tabindex="-1"
+                                        aria-labelledby="replyModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="replyModalLabel">Balas Komentar</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('news-comment-reply') }}" method="POST">
+                                                        @csrf
+                                                        <textarea name="reply" class="form-control" rows="4" placeholder="Tulis balasan..." required></textarea>
+                                                        <input type="hidden" name="parent_id"
+                                                            value="{{ $comment->id }}">
+                                                        <input type="hidden" name="news_id"
+                                                            value="{{ $news->id }}">
+                                                        <button type="submit" class="btn btn-primary mt-3">Kirim
+                                                            Balasan</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
 
-                            <!-- Comment 2 -->
-                            <div class="list-group-item border-0 px-0 py-3">
-                                <div class="d-flex">
-                                    <img src="https://via.placeholder.com/50" class="rounded-circle me-3"
-                                        alt="User">
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center mb-1">
-                                            <h6 class="mb-0">Siti Aminah</h6>
-                                            <small class="text-muted">3 hari lalu</small>
-                                        </div>
-                                        <p class="mb-2">Jazakallah khairan ustadz untuk penjelasannya. Sangat
-                                            bermanfaat.</p>
-                                        <div>
-                                            <a href="#" class="text-primary me-3"><i
-                                                    class="fas fa-reply me-1"></i>Balas</a>
-                                            <a href="#" class="text-primary"><i
-                                                    class="fas fa-thumbs-up me-1"></i>Suka (8)</a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <!-- View All Comments -->
+                            <div class="text-center mt-3">
+                                <a href="{{ route('news-comments', $news->id) }}"
+                                    class="btn btn-outline-primary btn-sm">Lihat Semua Komentar</a>
                             </div>
                         </div>
-
-                        <!-- View All Comments -->
-                        <div class="text-center mt-3">
-                            <a href="#" class="btn btn-outline-primary btn-sm">Lihat Semua Komentar</a>
+                    @else
+                        <div class="card my-5">
+                            <div class="card-body">
+                                <h5 class="p-0">{{ __('frontend.Please') }} <a
+                                        href="{{ route('login') }}">{{ __('frontend.Login') }}</a>
+                                    {{ __('frontend.to comment in the post!') }}</h5>
+                            </div>
                         </div>
-                    </div>
+                    @endauth
+
                 </div>
 
                 <!-- Related Materi -->
@@ -248,16 +279,16 @@
             let id = $(this).data('id');
             Swal.fire({
                 title: '{{ __('
-                                frontend.Are you sure ? ') }}',
+                                                frontend.Are you sure ? ') }}',
                 text: "{{ __("
-                                frontend.You won '\t be able to revert this!") }}",
+                                                frontend.You won '\t be able to revert this!") }}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: '{{ __('
-                                frontend.Yes,
-                                delete it!') }}'
+                                                frontend.Yes,
+                                                delete it!') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
 
