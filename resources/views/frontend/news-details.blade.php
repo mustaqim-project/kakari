@@ -298,16 +298,16 @@
             let id = $(this).data('id');
             Swal.fire({
                 title: '{{ __('
-                                                                                frontend.Are you sure ? ') }}',
+                                                                                                frontend.Are you sure ? ') }}',
                 text: "{{ __("
-                                                                                frontend.You won '\t be able to revert this!") }}",
+                                                                                                frontend.You won '\t be able to revert this!") }}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: '{{ __('
-                                                                                frontend.Yes,
-                                                                                delete it!') }}'
+                                                                                                frontend.Yes,
+                                                                                                delete it!') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
 
