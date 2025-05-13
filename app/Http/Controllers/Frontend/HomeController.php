@@ -212,6 +212,10 @@ class HomeController extends Controller
             return Ad::first();
         });
 
+        $mostViewedPosts = News::activeEntries()->withLocalize()
+            ->orderBy('views', 'DESC')
+            ->take(3)
+            ->get();
         // Cache related news by tag - 10 minutes
         $relatedNewsByTag = Cache::remember('related_news_by_tag_' . $news->id, 10, function () use ($news) {
             return News::whereHas('tags', function ($query) use ($news) {
@@ -231,6 +235,8 @@ class HomeController extends Controller
 
         return view('frontend.news-details', compact(
             'news',
+            'mostViewedPosts',
+
             'recentNews',
             'mostCommonTags',
             'nextPost',
