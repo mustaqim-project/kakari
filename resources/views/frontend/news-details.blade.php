@@ -86,10 +86,7 @@
                         <span class="article-date">
                             <i class="fa fa-calendar"></i> {{ date('M d, Y', strtotime($news->created_at)) }}
                         </span>
-                        <span class="article-category">
-                            <i class="fa fa-folder"></i>
-                            <a href="{{ route('category', $news->category->slug) }}">{{ $news->category->name }}</a>
-                        </span>
+
                         <span class="article-views">
                             <i class="fa fa-eye"></i> {{ convertToKFormat($news->views) }} {{ __('frontend.views') }}
                         </span>
