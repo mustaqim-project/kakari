@@ -106,7 +106,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto" style="font-size: 0.8em;">
                         <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Tentang Kami</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('kajian') }}">Kajian</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('news') }}">Kajian</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('multimedia') }}">Multimedia</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('pendidikan') }}">Pendidikan</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('tokoh') }}">Tokoh & Jaringan</a></li>
@@ -133,7 +133,7 @@
             <h1 class="display-4 fw-bold mb-4">"Mewarisi Cahaya, Menebar Hikmah dari Ulama Minangkabau untuk Dunia"</h1>
             <p class="lead mb-5">Media Dakwah, Edukasi, dan Digitalisasi Warisan Keulamaan</p>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="{{ route('kajian') }}" class="btn btn-primary btn-lg px-4">
+                <a href="{{ route('news') }}" class="btn btn-primary btn-lg px-4">
                     <i class="fas fa-book-open me-2"></i>Ikuti Kajian
                 </a>
                 <a href="{{ route('multimedia') }}" class="btn btn-outline-light btn-lg px-4">
