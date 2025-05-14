@@ -469,18 +469,18 @@ class HomeController extends Controller
     {
         $videos = Video::with('playlist') // asumsi relasi ke CatDownload bernama 'category'
             ->orderBy('created_at', 'desc')
-            ->take(5)
+            ->take(4)
             ->get();
 
         $podcasts = Podcast::with('playlist') // asumsi relasi ke CatDownload bernama 'category'
             ->orderBy('created_at', 'desc')
-            ->take(5)
+            ->take(4)
             ->get();
 
 
         $downloads = Download::with('catDownload') // asumsi relasi ke CatDownload bernama 'category'
             ->orderBy('created_at', 'desc')
-            ->take(5)
+            ->take(4)
             ->get();
 
         return view('frontend.multimedia', compact('videos', 'podcasts', 'downloads'));
