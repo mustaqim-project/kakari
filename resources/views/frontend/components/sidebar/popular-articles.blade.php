@@ -22,7 +22,7 @@
     </div>
 </div>
 <!-- Popular Articles -->
-<div class="card mb-4">
+{{-- <div class="card mb-4">
     <div class="card-header bg-primary text-white">
         <h5 class="mb-0">Tag Terpopuler</h5>
     </div>
@@ -37,4 +37,4 @@
             </a>
         @endforeach
     </div>
-</div>
+</div> --}}
