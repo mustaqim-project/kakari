@@ -473,9 +473,7 @@ public function multimedia()
         ->take(5)
         ->get();
 
-
-dd($downloads);
-    // return view('frontend.multimedia', compact('downloads'));
+    return view('frontend.multimedia', compact('downloads'));
 }
 
 
