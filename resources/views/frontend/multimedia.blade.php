@@ -73,32 +73,50 @@
         @endforeach
 
         <!-- Infografis, E-Book & Komik Dakwah -->
-        <div class="mb-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="h4"><i class="fas fa-book-open me-2 text-primary"></i> {{ $category->name }}</h3>
-                {{-- <a href="{{ route('download.category', $category->id) }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a> --}}
-            </div>
+<div class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="h4">
+            <i class="fas fa-book-open me-2 text-primary"></i> Infografis, E-Book & Komik Dakwah
+        </h3>
+        <a href="{{ route('frontend.download.index') }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+    </div>
 
-            <div class="row g-4">
-                @foreach($category->downloads as $download)
+    <div class="row g-4">
+        @foreach($downloadCategories as $category)
+            @foreach($category->downloads as $download)
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 border-0 shadow-sm">
-                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="{{ $download->name }}">
+                        <img src="{{ $download->thumbnail_url ?? 'https://via.placeholder.com/300x200' }}" class="card-img-top" alt="{{ $download->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $download->name }}</h5>
-                            <p class="card-text small text-muted">{{ Str::limit($download->deskripsi, 70) }}</p>
+                            <p class="card-text small text-muted">
+                                {{ Str::limit($download->deskripsi, 70) }}
+                            </p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary">{{ $category->name }}</span>
-                                <a href="{{ asset('storage/' . $download->download_file) }}" class="btn btn-sm btn-outline-primary" download>
+                                @php
+                                    $badgeColor = match(strtolower($category->name)) {
+                                        'infografis' => 'primary',
+                                        'e-book' => 'success',
+                                        'komik' => 'warning',
+                                        default => 'secondary'
+                                    };
+                                @endphp
+                                <span class="badge bg-{{ $badgeColor }}">
+                                    {{ $category->name }}
+                                </span>
+                                <a href="{{ asset('storage/' . $download->download_file) }}" class="btn btn-sm btn-outline-success" download>
                                     <i class="fas fa-download me-1"></i> Unduh
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
-            </div>
-        </div>
+            @endforeach
+        @endforeach
+    </div>
+</div>
+
+
 
         <!-- Call to Action -->
         <div class="text-center mt-5">
