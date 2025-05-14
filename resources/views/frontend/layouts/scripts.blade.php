@@ -165,15 +165,5 @@
         evt.currentTarget.classList.add("active");
     }
 
-    function openEkoranModal(slideIndex) {
-        // Initialize modal slider
-        var modalSlider = new bootstrap.Carousel(document.getElementById('ekoranModalSlider'));
 
-        // Go to the clicked slide
-        modalSlider.to(slideIndex);
-
-        // Show modal
-        var modal = new bootstrap.Modal(document.getElementById('ekoranModal'));
-        modal.show();
-    }
 </script>
