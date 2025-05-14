@@ -115,7 +115,7 @@ class HomeController extends Controller
 
         // $latestEkoran = Ekoran::orderBy('tanggal_terbit', 'DESC')
         //     ->get();
-$latestEkoran = Ekoran::latest()->first();
+        $latestEkoran = Ekoran::latest()->first();
 
         $activePendidikan = Pendidikan::where('is_active', 1)
             ->orderBy('tanggal_mulai', 'ASC')
@@ -288,10 +288,11 @@ $latestEkoran = Ekoran::latest()->first();
             ->orderBy('views', 'DESC')
             ->take(3)
             ->get();
-        $latestEkoran = Ekoran::orderBy('tanggal_terbit', 'DESC')
-            ->take(5)
-            ->get();
+        // $latestEkoran = Ekoran::orderBy('tanggal_terbit', 'DESC')
+        //     ->take(5)
+        //     ->get();
 
+        $latestEkoran = Ekoran::latest()->first();
         $categories = Category::where(['status' => 1, 'language' => getLangauge()])->get();
 
         $ad = Ad::first();
