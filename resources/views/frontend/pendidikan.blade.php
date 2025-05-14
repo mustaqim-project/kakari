@@ -272,9 +272,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Statistik Pendidikan -->
-
         </div>
     </section>
 
