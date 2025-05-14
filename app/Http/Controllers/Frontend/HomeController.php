@@ -465,16 +465,26 @@ class HomeController extends Controller
     }
 
 
-public function multimedia()
-{
-    // Ambil 5 video terbaru dari playlist aktif
-        $downloads = Download::with('catDownload') // asumsi relasi ke CatDownload bernama 'category'
-        ->orderBy('created_at', 'desc')
-        ->take(5)
-        ->get();
+    public function multimedia()
+    {
+        $videos = Video::with('playlist') // asumsi relasi ke CatDownload bernama 'category'
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
 
-    return view('frontend.multimedia', compact('downloads'));
-}
+        $podcasts = Podcast::with('playlist') // asumsi relasi ke CatDownload bernama 'category'
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+
+        $downloads = Download::with('catDownload') // asumsi relasi ke CatDownload bernama 'category'
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return view('frontend.multimedia', compact('videos', 'podcasts', 'downloads'));
+    }
 
 
 
@@ -591,7 +601,7 @@ public function multimedia()
     {
         $about = About::where('language', getLangauge())->first();
         $penguruses  = Pengurus::all();
-        return view('frontend.about', compact('about','penguruses'));
+        return view('frontend.about', compact('about', 'penguruses'));
     }
 
     public function contact()

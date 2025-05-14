@@ -7,15 +7,14 @@
         <h2 class="section-title text-center mb-5">Multimedia Dakwah</h2>
 
         <!-- Video Ceramah & Dokumenter -->
-        @foreach($videoPlaylists as $playlist)
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="h4"><i class="fas fa-video me-2 text-primary"></i> {{ $playlist->title }}</h3>
+                <h3 class="h4"><i class="fas fa-video me-2 text-primary"></i>Vidio Youtube</h3>
                 {{-- <a href="{{ route('video.playlist', $playlist->slug) }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a> --}}
             </div>
 
             <div class="row g-4">
-                @foreach($playlist->videos as $video)
+                @foreach($videos as $video)
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 border-0 shadow-sm">
                         <div class="ratio ratio-16x9">
@@ -34,23 +33,21 @@
                 @endforeach
             </div>
         </div>
-        @endforeach
 
         <!-- Podcast Cahaya Surau -->
-        @foreach($podcastPlaylists as $podcastPlaylist)
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="h4"><i class="fas fa-podcast me-2 text-primary"></i> {{ $podcastPlaylist->title }}</h3>
+                <h3 class="h4"><i class="fas fa-podcast me-2 text-primary"></i>Podcast</h3>
                 {{-- <a href="{{ route('podcast.playlist', $podcastPlaylist->slug) }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a> --}}
             </div>
 
             <div class="row g-4">
-                @foreach($podcastPlaylist->podcasts as $podcast)
+                @foreach($podcasts as $podcast)
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 border-0 shadow-sm">
                         <div class="card-body">
                             <div class="d-flex mb-3">
-                                <img src="{{ $podcast->cover_image_url ?? 'https://via.placeholder.com/80' }}" alt="Podcast Cover" class="rounded me-3" width="80" height="80">
+                                <img src="assets{{ $podcast->cover_image}}" alt="Podcast Cover" class="rounded me-3" width="80" height="80">
                                 <div>
                                     <h5 class="card-title mb-1">{{ $podcast->title }}</h5>
                                     <p class="card-text small text-muted mb-2">{{ Str::limit($podcast->description, 70) }}</p>
