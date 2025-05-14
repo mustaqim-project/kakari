@@ -114,7 +114,6 @@ class HomeController extends Controller
             ->get();
 
         $latestEkoran = Ekoran::orderBy('tanggal_terbit', 'DESC')
-            ->take(5)
             ->get();
 
         $activePendidikan = Pendidikan::where('is_active', 1)
