@@ -324,6 +324,12 @@ class HomeController extends Controller
         return view('frontend.playlists', compact('playlists', 'featuredPlaylists'));
     }
 
+    public function live()
+    {
+        $latestStreaming = Streaming::whereNotNull('code_frame')->latest()->first();
+        return view('frontend.live', compact('latestStreaming'));
+    }
+
     // Metode untuk menampilkan detail playlist dan video-videonya
     public function showPlaylist(string $slug)
     {
