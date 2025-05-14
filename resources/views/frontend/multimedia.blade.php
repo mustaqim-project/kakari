@@ -67,7 +67,7 @@
                 @endforeach
             </div>
         </div>
-        @endforeach
+        @
 
         <!-- Infografis, E-Book & Komik Dakwah -->
         <div class="mb-5">
