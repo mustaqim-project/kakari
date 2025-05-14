@@ -9,8 +9,8 @@
                 use App\Models\Category;
             @endphp
             @foreach (Category::withCount('news')->get() as $category)
-                <a href="{{ route('category.show', $category->slug) }}"
-                    class="btn btn-sm btn-outline-primary">
+                <a href="{{ route('kajian', ['category' => $category->slug]) }}"
+                   class="btn btn-sm btn-outline-primary">
                     {{ $category->name }} ({{ $category->news_count }})
                 </a>
             @endforeach

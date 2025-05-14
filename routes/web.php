@@ -120,7 +120,7 @@ Route::get('live', [HomeController::class, 'live'])->name('live');
 Route::get('search', [HomeController::class, 'search'])->name('search');
 
 // Route Category
-Route::get('category/{slug}', [HomeController::class, 'categoryShow'])->name('category.show');
+// Route::get('category/{slug}', [HomeController::class, 'categoryShow'])->name('category.show');
 
 // Route Newsletter Subscriber
 Route::post('subscribe-newsletter', [HomeController::class, 'SubscribeNewsLetter'])->name('subscribe-newsletter');
