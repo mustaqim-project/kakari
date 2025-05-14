@@ -465,6 +465,44 @@ class HomeController extends Controller
     }
 
 
+    public function multimedia()
+    {
+
+// Ambil data video playlist dengan video aktif
+        $videoPlaylists = Playlist::with(['videos' => function($query) {
+            $query->orderBy('created_at', 'desc')->take(4);
+        }])
+        ->active()
+        ->orderBy('is_featured', 'desc')
+        ->orderBy('created_at', 'desc')
+        ->take(1)
+        ->get();
+
+        // Ambil data podcast playlist dengan podcast aktif
+        $podcastPlaylists = PodcastPlaylist::with(['podcasts' => function($query) {
+            $query->where('is_active', true)
+                  ->orderBy('publish_date', 'desc')
+                  ->take(3);
+        }])
+        ->active()
+        ->orderBy('is_featured', 'desc')
+        ->orderBy('created_at', 'desc')
+        ->take(1)
+        ->get();
+
+        // Ambil data download kategori dengan file download
+        $downloadCategories = CatDownload::with(['downloads' => function($query) {
+            $query->orderBy('created_at', 'desc')->take(4);
+        }])->get();
+
+        return view('frontend.multimedia', compact(
+            'videoPlaylists',
+            'podcastPlaylists',
+            'downloadCategories'
+        ));
+    }
+
+
     // Metode untuk menampilkan detail pendidikan
     public function showPendidikan($id)
     {
