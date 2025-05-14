@@ -464,6 +464,7 @@ class HomeController extends Controller
         return view('frontend.pendidikan', compact('pendidikan', 'pendidikanAktif'));
     }
 
+
     // Metode untuk menampilkan detail pendidikan
     public function showPendidikan($id)
     {
