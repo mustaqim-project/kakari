@@ -62,7 +62,7 @@
             </a>
             <div class="p-3">
                 <h5>{{ $latestEkoran->judul }}</h5>
-                <a href="{{ asset($ekoran->image) }}" class="btn btn-primary mt-2" target="_blank" rel="noopener noreferrer">
+                <a href="{{ asset($latestEkoran->image) }}" class="btn btn-primary mt-2" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-external-link-alt me-2"></i>Buka E-Koran
                 </a>
 
