@@ -514,6 +514,12 @@ class HomeController extends Controller
         return view('frontend.donasi', compact('donasi'));
     }
 
+    public function zakat()
+    {
+        $donasi = Donasi::orderBy('id', 'DESC')->get();
+        return view('frontend.zakat', compact('donasi'));
+    }
+
 
 
 
