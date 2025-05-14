@@ -113,8 +113,9 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        $latestEkoran = Ekoran::orderBy('tanggal_terbit', 'DESC')
-            ->get();
+        // $latestEkoran = Ekoran::orderBy('tanggal_terbit', 'DESC')
+        //     ->get();
+$latestEkoran = Ekoran::latest()->first();
 
         $activePendidikan = Pendidikan::where('is_active', 1)
             ->orderBy('tanggal_mulai', 'ASC')
