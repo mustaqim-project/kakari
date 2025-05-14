@@ -73,7 +73,6 @@
         @endforeach
 
         <!-- Infografis, E-Book & Komik Dakwah -->
-        @foreach($downloadCategories as $category)
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="h4"><i class="fas fa-book-open me-2 text-primary"></i> {{ $category->name }}</h3>
@@ -100,7 +99,6 @@
                 @endforeach
             </div>
         </div>
-        @endforeach
 
         <!-- Call to Action -->
         <div class="text-center mt-5">
