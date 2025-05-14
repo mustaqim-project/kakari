@@ -56,7 +56,7 @@
     </div>
     <div class="card-body text-center p-0">
         @if ($latestEkoran)
-            <a href="{{ asset($ekoran->image) }}" target="_blank" rel="noopener noreferrer">
+            <a href="{{ asset($latestEkoran->image) }}" target="_blank" rel="noopener noreferrer">
                 <img src="{{ asset($latestEkoran->image) }}" class="img-fluid" alt="E-Koran Edisi Terbaru"
                     style="max-height: 300px; object-fit: cover; margin: 2.5em;">
             </a>
