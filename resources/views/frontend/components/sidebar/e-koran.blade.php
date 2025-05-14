@@ -5,7 +5,7 @@
     </div>
     <div class="card-body text-center p-0">
         @if ($latestEkoran->count() > 0)
-            <img src="{{ asset($ekoran->image) }}"
+            <img src="{{ asset($latestEkoran->image) }}"
                 class="img-fluid cursor-pointer" alt="E-Koran Edisi Terbaru"
                 style="max-height: 300px; object-fit: cover; margin: 2.5em;"
                 data-bs-toggle="modal" data-bs-target="#ekoranModal">
