@@ -70,30 +70,31 @@
 
 
         <!-- Infografis, E-Book & Komik Dakwah -->
+
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="h4"><i class="fas fa-file-download me-2 text-primary"></i>Infografis, E-Book & Komik Dakwah</h3>
+                <h3 class="h4"><i class="fas fa-book-open me-2 text-primary"></i> Infografis, E-Book & Komik Dakwah</h3>
+                <a href="#" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
             </div>
+                 @foreach($downloads as $download)
             <div class="row g-4">
-                @foreach($downloads as $download)
-                <div class="col-md-6 col-lg-4">
+                <!-- Infografis 1 -->
+                <div class="col-md-6 col-lg-3">
                     <div class="card h-100 border-0 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">{{ $download->title }}</h5>
-                            <p class="card-text small text-muted">
-                                Kategori: <strong>{{ $download->category->nama ?? 'Tidak ada kategori' }}</strong>
-                            </p>
-                            <p class="card-text small">{{ Str::limit($download->description, 100) }}</p>
-                            <a href="{{ $download->file_url }}" class="btn btn-sm btn-primary" download>
-                                <i class="fas fa-download me-1"></i> Unduh
-                            </a>
+                            <p class="card-text small text-muted">{{ Str::limit($download->deskripsi, 100) }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">{{ $download->catDownload->name }}</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-download me-1"></i> {{ $download->download_file }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
-        </div>
+                            @endforeach
 
+        </div>
 
         <!-- Call to Action -->
         <div class="text-center mt-5">
