@@ -468,12 +468,14 @@ class HomeController extends Controller
 public function multimedia()
 {
     // Ambil 5 video terbaru dari playlist aktif
-        $downloads = Download::with('category') // asumsi relasi ke CatDownload bernama 'category'
+        $downloads = Download::with('catDownload') // asumsi relasi ke CatDownload bernama 'category'
         ->orderBy('created_at', 'desc')
         ->take(5)
         ->get();
 
-    return view('frontend.multimedia', compact('downloads'));
+
+dd($downloads);
+    // return view('frontend.multimedia', compact('downloads'));
 }
 
 
