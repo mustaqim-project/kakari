@@ -11,7 +11,7 @@
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="h4"><i class="fas fa-video me-2 text-primary"></i> {{ $playlist->title }}</h3>
-                <a href="{{ route('video.playlist', $playlist->slug) }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+                {{-- <a href="{{ route('video.playlist', $playlist->slug) }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a> --}}
             </div>
 
             <div class="row g-4">
@@ -41,7 +41,7 @@
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="h4"><i class="fas fa-podcast me-2 text-primary"></i> {{ $podcastPlaylist->title }}</h3>
-                <a href="{{ route('podcast.playlist', $podcastPlaylist->slug) }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+                {{-- <a href="{{ route('podcast.playlist', $podcastPlaylist->slug) }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a> --}}
             </div>
 
             <div class="row g-4">
@@ -62,8 +62,6 @@
                                 Browser Anda tidak mendukung elemen audio.
                             </audio>
                             <div class="d-flex justify-content-between mt-2">
-                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="fab fa-spotify me-1"></i> Spotify</a>
-                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="fab fa-youtube me-1"></i> YouTube</a>
                                 <a href="{{ $podcast->audio_url }}" download class="btn btn-sm btn-outline-primary"><i class="fas fa-download me-1"></i> Download</a>
                             </div>
                         </div>
@@ -79,7 +77,7 @@
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="h4"><i class="fas fa-book-open me-2 text-primary"></i> {{ $category->name }}</h3>
-                <a href="{{ route('download.category', $category->id) }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+                {{-- <a href="{{ route('download.category', $category->id) }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a> --}}
             </div>
 
             <div class="row g-4">
