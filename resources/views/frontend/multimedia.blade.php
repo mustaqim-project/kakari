@@ -78,7 +78,7 @@
         <h3 class="h4">
             <i class="fas fa-book-open me-2 text-primary"></i> Infografis, E-Book & Komik Dakwah
         </h3>
-        <a href="{{ route('frontend.download.index') }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+        {{-- <a href="{{ route('frontend.download.index') }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a> --}}
     </div>
 
     <div class="row g-4">
