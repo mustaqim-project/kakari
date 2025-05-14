@@ -66,7 +66,7 @@
 
 
 <!-- Place the first <script> tag in your HTML's <head> -->
-<script src="https://cdn.tiny.cloud/1/nif4ssi9623qt9nuzb7zgacwgokb2f4ja3qss2bg5vnjkk98/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/kmqp5zrzmxu3rj91q4t1t9tx0pqvwqwa1y81b0eqxkhqvuk8/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
 <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
 <script>
