@@ -1,6 +1,12 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+    <style>
+        .fullscreen {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+    </style>
     <!-- Live Streaming Section -->
     <section class="py-5 bg-dark text-white position-relative">
         <div class="container">
@@ -8,9 +14,8 @@
                 <div class="col-lg-7 mb-4 mb-lg-0">
                     <div class="position-relative rounded overflow-hidden shadow-lg">
 
-
                         @if ($latestStreaming)
-                            <div class="ratio ratio-16x9">
+                            <div class="ratio fullscreen">
                                 {!! $latestStreaming->code_frame !!}
                             </div>
                             <div class="p-4">
@@ -24,17 +29,17 @@
                             </div>
                         @else
                             <div
-                                class="ratio ratio-16x9 d-flex align-items-center justify-content-center bg-dark text-white rounded">
+                                class="ratio fullscreen d-flex align-items-center justify-content-center bg-secondary text-white rounded">
                                 <div class="text-center">
                                     <h5>Tidak Ada Live Streaming</h5>
                                     <p class="mb-0">Silakan cek kembali nanti untuk siaran langsung terbaru.</p>
                                 </div>
                             </div>
                         @endif
+
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
 @endsection
