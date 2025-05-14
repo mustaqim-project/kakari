@@ -61,27 +61,27 @@
                                 <a class="btn btn-social facebook me-2"
                                     href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"
                                     target="_blank" title="Share on Facebook">
-                                    <i class="fab fa-facebook-f"></i> Facebook
+                                    <i class="fab fa-facebook-f"></i>
                                 </a>
                                 <a class="btn btn-social twitter me-2"
                                     href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ url()->current() }}"
                                     target="_blank" title="Share on Twitter">
-                                    <i class="fab fa-twitter"></i> Twitter
+                                    <i class="fab fa-twitter"></i>
                                 </a>
                                 <a class="btn btn-social whatsapp me-2"
                                     href="https://wa.me/?text={{ $news->title }}%20{{ url()->current() }}"
                                     target="_blank" title="Share on WhatsApp">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                    <i class="fab fa-whatsapp"></i>
                                 </a>
                                 <a class="btn btn-social telegram me-2"
                                     href="https://t.me/share/url?url={{ url()->current() }}&text={{ $news->title }}"
                                     target="_blank" title="Share on Telegram">
-                                    <i class="fab fa-telegram"></i> Telegram
+                                    <i class="fab fa-telegram"></i>
                                 </a>
                                 <a class="btn btn-social linkedin"
                                     href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}&title={{ $news->title }}"
                                     target="_blank" title="Share on LinkedIn">
-                                    <i class="fab fa-linkedin"></i> LinkedIn
+                                    <i class="fab fa-linkedin"></i>
                                 </a>
                             </div>
                         </div>
