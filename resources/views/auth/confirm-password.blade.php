@@ -1,27 +1,45 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('frontend.This is a secure area of the application. Please confirm your password before continuing.') }}
-    </div>
+    <section class="wrap__section bg-light py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-white border-0 py-3">
+                            <h4 class="card-title mb-0 text-center text-primary">{{ __('frontend.Password Confirmation') }}</h4>
+                        </div>
+                        <div class="card-body px-4 py-4">
+                            <p class="text-muted small text-center mb-4">
+                                {{ __('frontend.This is a secure area of the application. Please confirm your password before continuing.') }}
+                            </p>
 
-    <form method="POST" action="{{ route('password.confirm') }}">
-        @csrf
+                            <form method="POST" action="{{ route('password.confirm') }}">
+                                @csrf
 
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('frontend.Password')" />
+                                <!-- Password Field -->
+                                <div class="form-group mb-4">
+                                    <label for="password" class="form-label small text-muted">{{ __('frontend.Password') }}</label>
+                                    <input class="form-control form-control-lg rounded-pill @error('password') is-invalid @enderror"
+                                           id="password"
+                                           type="password"
+                                           name="password"
+                                           required
+                                           autocomplete="current-password">
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                <!-- Submit Button -->
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill py-2 fw-bold">
+                                        {{ __('frontend.Confirm') }}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('frontend.Confirm') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </section>
 </x-guest-layout>
