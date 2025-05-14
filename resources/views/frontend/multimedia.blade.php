@@ -72,7 +72,7 @@
         <!-- Infografis, E-Book & Komik Dakwah -->
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="h4"><i class="fas fa-file-download me-2 text-primary"></i>Download Terbaru</h3>
+                <h3 class="h4"><i class="fas fa-file-download me-2 text-primary"></i>Infografis, E-Book & Komik Dakwah</h3>
             </div>
             <div class="row g-4">
                 @foreach($downloads as $download)
